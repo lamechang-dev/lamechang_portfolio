@@ -7,7 +7,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <style>{`body { background: #cbdfe0 } /* custom! */`}</style>
+          <style></style>
           <link
             href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap"
             rel="stylesheet"

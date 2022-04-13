@@ -10,8 +10,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(1)
   },
   title: {
-    fontFamily: "'Roboto', sans-serif",
-    marginBottom: theme.spacing(2)
+    fontFamily: "'Comfortaa', cursive",
+    marginBottom: theme.spacing(2),
+    textUnderlineOffset: theme.spacing(0.5) + "px"
   },
   content: {
     fontFamily: "'Roboto', sans-serif",
@@ -30,7 +31,7 @@ const ContentSection: React.FC<Props> = ({ className, title, content }) => {
 
   return (
     <div className={clsx(className, classes.contentSectionContainer)}>
-      <Typography className={classes.title} variant="body2">
+      <Typography className={classes.title} variant="body1">
         {title}
       </Typography>
       <div className={classes.content}>{content}</div>

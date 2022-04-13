@@ -2,32 +2,20 @@ import { createTheme, Theme, ThemeProvider } from "@material-ui/core/styles";
 import { AppProps } from "next/app";
 import { useEffect } from "react";
 import { makeStyles, Typography } from "@material-ui/core";
+import { useRecoilValue, RecoilRoot } from "recoil";
+import { muiThemeType } from "../global/context/index";
+import PageTemplate from "components/layout/PageTemplate";
 
-const theme = createTheme({
-  typography: {
-    fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
-    ].join(","),
-    allVariants: {
-      color: "#035169"
+const useStyles = makeStyles((theme: Theme) => ({
+  animate: {
+    "& *": {
+      "-webkit-transition": "color 0.3s",
+      "-moz-transition": "color 0.3s",
+      "-o-transition": "color 0.3s",
+      transition: "color 0.3s"
     }
-  },
-  palette: {
-    primary: {
-      main: "#035169"
-    },
-    type: "light"
   }
-});
+}));
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -35,10 +23,16 @@ function MyApp({ Component, pageProps }: AppProps) {
     jssStyles?.parentElement?.removeChild(jssStyles);
   }, []);
 
+  const classes = useStyles();
+
   return (
-    <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <RecoilRoot>
+      <PageTemplate>
+        <div className={classes.animate}>
+          <Component {...pageProps} />
+        </div>
+      </PageTemplate>
+    </RecoilRoot>
   );
 }
 

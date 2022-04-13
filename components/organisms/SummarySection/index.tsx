@@ -7,7 +7,7 @@ import clsx from "clsx";
 
 const useStyles = makeStyles((theme: Theme) => ({
   summaryContainer: {
-    background: "#D6EAF1",
+    background: theme.palette.background.paper,
     margin: "0 auto",
     borderRadius: "24px",
     width: "85%"
