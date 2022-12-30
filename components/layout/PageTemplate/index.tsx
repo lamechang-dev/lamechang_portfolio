@@ -10,7 +10,7 @@ type PageTemplateProps = {
 const PageTemplate: React.VFC<PageTemplateProps> = ({ children }) => {
   const themeType = useRecoilValue(muiThemeType);
 
-  const lightTheme = createTheme({
+  const commonTheme = createTheme({
     typography: {
       fontFamily: [
         "-apple-system",
@@ -22,63 +22,65 @@ const PageTemplate: React.VFC<PageTemplateProps> = ({ children }) => {
         "sans-serif",
         '"Apple Color Emoji"',
         '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"'
+        '"Segoe UI Symbol"',
       ].join(","),
+    },
+  });
+
+  const lightTheme = createTheme({
+    typography: {
+      fontFamily: commonTheme.typography.fontFamily,
       allVariants: {
-        color: "#035169"
-      }
+        color: "#035169",
+      },
     },
     palette: {
       background: {
-        default: "#cbdfe0"
+        default: "#cbdfe0",
       },
       primary: {
         main: "#035169",
-        contrastText: "#BCBA70"
+        contrastText: "#BCBA70",
       },
       secondary: {
-        main: "#027FA3"
+        main: "#027FA3",
       },
       grey: {
-        50: "#FFFFFF"
-      }
-    }
+        50: "#FFFFFF",
+      },
+    },
   });
 
   const darkTheme = createTheme({
     typography: {
-      fontFamily: [
-        "-apple-system",
-        "BlinkMacSystemFont",
-        '"Segoe UI"',
-        "Roboto",
-        '"Helvetica Neue"',
-        "Arial",
-        "sans-serif",
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"'
-      ].join(","),
+      fontFamily: commonTheme.typography.fontFamily,
       allVariants: {
-        color: "#FFFFFF"
-      }
+        color: "#FFFFFF",
+      },
     },
     palette: {
       background: {
         default: "#11202c",
-        paper: "#096c8b"
+        paper: "#096c8b",
       },
       primary: {
         main: "#FFFFFF",
-        contrastText: "#BCBA70"
+        contrastText: "#BCBA70",
       },
       secondary: {
-        main: "#FFFFFF"
+        main: "#FFFFFF",
       },
       grey: {
-        50: "#FFFFFF"
-      }
-    }
+        50: "#FFFFFF",
+      },
+    },
+  });
+
+  lightTheme.transitions.create(["color", "background-color"], {
+    duration: "12s",
+  });
+  darkTheme.transitions.create(["color", "background-color"], {
+    duration: "12s",
   });
 
   return (

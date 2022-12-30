@@ -26,7 +26,11 @@ const Home: NextPage = () => {
           <>
             <Grid container direction="column" alignItems="center">
               <Grid item>
-                <Avatar alt="Ryosuke Yoshimoto" src="/img/portfolio.png" />
+                <Avatar
+                  alt="Ryosuke Yoshimoto"
+                  src="/img/portfolio.png"
+                  className={clsx("w-16", "h-16")}
+                />
               </Grid>
             </Grid>
             <Grid container direction="column">
@@ -38,10 +42,10 @@ const Home: NextPage = () => {
                     </Typography>
                     {bio.href ? (
                       <TextLink
-                        variant="body2"
                         href={bio.href}
-                        className={clsx("mb-2")}
+                        className={clsx("mb-2", "inline-block")}
                         target="_blank"
+                        rel="noreferrer"
                       >
                         {bio.value}
                       </TextLink>
@@ -70,7 +74,12 @@ const Home: NextPage = () => {
           >
             <Grid item container spacing={2}>
               {SKILL_LANGUAGES.map((skill) => (
-                <Grid item xs={4} key={skill.imageUrl}>
+                <Grid
+                  item
+                  xs={4}
+                  key={skill.imageUrl}
+                  className={"text-center"}
+                >
                   <Image width="80" height="80" src={skill.imageUrl} />
                 </Grid>
               ))}

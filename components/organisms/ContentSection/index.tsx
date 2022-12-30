@@ -4,17 +4,13 @@ import clsx from "clsx";
 
 const useStyles = makeStyles((theme: Theme) => ({
   contentSectionContainer: {
-    padding: theme.spacing(1)
+    padding: theme.spacing(1),
   },
   title: {
     fontFamily: "'Comfortaa', cursive",
     marginBottom: theme.spacing(2),
-    textUnderlineOffset: theme.spacing(0.5) + "px"
+    textUnderlineOffset: theme.spacing(0.5) + "px",
   },
-  content: {
-    fontFamily: "'Roboto', sans-serif",
-    fontWeight: 200
-  }
 }));
 
 export type Props = {
