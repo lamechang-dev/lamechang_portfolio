@@ -1,7 +1,7 @@
 import { AppProps } from "next/app";
 import { useEffect } from "react";
 import { RecoilRoot } from "recoil";
-import PageTemplate from "components/layout/PageTemplate";
+import PageTemplate from "src/components/layout/PageTemplate";
 import "tailwindcss/tailwind.css";
 
 function MyApp({ Component, pageProps }: AppProps) {

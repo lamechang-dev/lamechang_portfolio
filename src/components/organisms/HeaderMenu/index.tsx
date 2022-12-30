@@ -1,8 +1,16 @@
-import { Grid, makeStyles, Theme, Typography } from "@material-ui/core";
+import {
+  Grid,
+  makeStyles,
+  Theme,
+  Typography,
+  MenuItem,
+  Menu,
+} from "@material-ui/core";
 import React from "react";
-import LightButton from "components/atoms/LightButton";
+import LightButton from "src/components/atoms/LightButton";
+import MenuButton from "src/components/atoms/MenuButton";
 import clsx from "clsx";
-import { muiThemeType } from "global/context";
+import { muiThemeType } from "src/context";
 import { useRecoilState } from "recoil";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -64,7 +72,7 @@ const HeaderMenuBar: React.FC<Props> = ({ className }) => {
         </Grid>
         <Grid item>
           <LightButton color="secondary" onClick={handleClickLightButton} />
-          {/* <MenuButton
+          <MenuButton
             color="secondary"
             aria-controls={open ? "basic-menu" : undefined}
             aria-haspopup="true"
@@ -94,7 +102,7 @@ const HeaderMenuBar: React.FC<Props> = ({ className }) => {
             <MenuItem onClick={handleClose}>Profile</MenuItem>
             <MenuItem onClick={handleClose}>Blog</MenuItem>
             <MenuItem onClick={handleClose}>Twitter</MenuItem>
-          </Menu> */}
+          </Menu>
         </Grid>
       </Grid>
     </div>

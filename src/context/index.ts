@@ -5,3 +5,5 @@ export const muiThemeType = atom<PaletteType>({
   key: "themeType",
   default: "dark"
 });
+
+export const movieList = atom

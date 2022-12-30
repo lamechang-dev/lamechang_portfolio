@@ -3,9 +3,6 @@ import React from "react";
 import clsx from "clsx";
 
 const useStyles = makeStyles((theme: Theme) => ({
-  contentSectionContainer: {
-    padding: theme.spacing(1),
-  },
   title: {
     fontFamily: "'Comfortaa', cursive",
     marginBottom: theme.spacing(2),
@@ -27,7 +24,7 @@ const ContentSection: React.FC<Props> = ({ className, title, content }) => {
       <Typography className={classes.title} variant="body1">
         {title}
       </Typography>
-      <div className={classes.content}>{content}</div>
+      <div>{content}</div>
     </div>
   );
 };
