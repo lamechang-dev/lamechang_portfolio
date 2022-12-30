@@ -1,9 +1,5 @@
 import Image from "next/image";
-import {
-  Avatar,
-  Grid,
-  Typography
-} from "@material-ui/core";
+import { Avatar, Grid, Typography } from "@material-ui/core";
 import { NextPage } from "next";
 import HeaderMenuBar from "components/organisms/HeaderMenu";
 import MainContainer from "components/layout/MainContainer";
@@ -30,11 +26,11 @@ const Home: NextPage = () => {
           <>
             <Grid container direction="column" alignItems="center">
               <Grid item>
-                <Avatar alt="Ryosuke Yoshimoto" src="/img/portfolio.png" />
+                <Avatar alt="Ryosuke Yoshimoto" src="/img/portfolio.png" />
               </Grid>
             </Grid>
             <Grid container direction="column">
-              {BIO_ITEMS.map(bio => {
+              {BIO_ITEMS.map((bio) => {
                 return (
                   <Grid item key={bio.title}>
                     <Typography variant="body2" className={clsx("text-[12px]")}>
@@ -65,23 +61,21 @@ const Home: NextPage = () => {
         className={"mb-4"}
         title="SKILLS"
         content={
-          <>
-            <Grid
-              className={"p-2"}
-              container
-              alignContent="center"
-              direction="column"
-              alignItems="center"
-            >
-              <Grid item container spacing={2}>
-                {SKILL_LANGUAGES.map(skill => (
-                  <Grid item xs={4} key={skill.imageUrl}>
-                    <Image width="80" height="80" src={skill.imageUrl} />
-                  </Grid>
-                ))}
-              </Grid>
+          <Grid
+            className={"p-2"}
+            container
+            alignContent="center"
+            direction="column"
+            alignItems="center"
+          >
+            <Grid item container spacing={2}>
+              {SKILL_LANGUAGES.map((skill) => (
+                <Grid item xs={4} key={skill.imageUrl}>
+                  <Image width="80" height="80" src={skill.imageUrl} />
+                </Grid>
+              ))}
             </Grid>
-          </>
+          </Grid>
         }
       />
     </MainContainer>

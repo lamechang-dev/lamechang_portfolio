@@ -1,5 +1,5 @@
 module.exports = {
-  extends: "next/core-web-vitals",
+  extends: ["next/core-web-vitals", "prettier"],
   plugins: ["unused-imports"],
   rules: {
     "no-console": "warn",
@@ -7,9 +7,9 @@ module.exports = {
       "error",
       {
         component: true,
-        html: true
-      }
+        html: true,
+      },
     ],
-    "unused-imports/no-unused-imports": "error",   // "error" でも
-  }
+    "unused-imports/no-unused-imports": "error", // "error" でも
+  },
 };
