@@ -1,8 +1,6 @@
-import { createTheme, Theme, ThemeProvider } from "@material-ui/core/styles";
-import { AppProps } from "next/app";
-import { useEffect } from "react";
-import { makeStyles, Typography, CssBaseline } from "@material-ui/core";
-import { useRecoilValue, RecoilRoot } from "recoil";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import { CssBaseline } from "@material-ui/core";
+import { useRecoilValue } from "recoil";
 import { muiThemeType } from "global/context/index";
 
 type PageTemplateProps = {

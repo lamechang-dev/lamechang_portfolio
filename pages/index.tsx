@@ -1,22 +1,14 @@
-import Head from "next/head";
 import Image from "next/image";
 import {
   Avatar,
-  Button,
   Grid,
-  makeStyles,
-  Theme,
   Typography
 } from "@material-ui/core";
-import styles from "../styles/Home.module.css";
 import { NextPage } from "next";
-import LightButton from "components/atoms/LightButton/index";
 import HeaderMenuBar from "components/organisms/HeaderMenu";
 import MainContainer from "components/layout/MainContainer";
 import SummarySection from "../components/organisms/SummarySection/index";
 import ContentSection from "components/organisms/ContentSection";
-import SkillImage from "components/atoms/SkillImage";
-import YearData from "components/molecules/YearData";
 import clsx from "clsx";
 import { SKILL_LANGUAGES, BIO_ITEMS } from "../constants/portfolio/index";
 import { TextLink } from "components/atoms/TextLink";
@@ -44,7 +36,7 @@ const Home: NextPage = () => {
             <Grid container direction="column">
               {BIO_ITEMS.map(bio => {
                 return (
-                  <Grid item>
+                  <Grid item key={bio.title}>
                     <Typography variant="body2" className={clsx("text-[12px]")}>
                       {bio.title}
                     </Typography>
@@ -83,7 +75,7 @@ const Home: NextPage = () => {
             >
               <Grid item container spacing={2}>
                 {SKILL_LANGUAGES.map(skill => (
-                  <Grid item xs={4}>
+                  <Grid item xs={4} key={skill.imageUrl}>
                     <Image width="80" height="80" src={skill.imageUrl} />
                   </Grid>
                 ))}

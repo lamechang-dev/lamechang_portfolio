@@ -1,12 +1,9 @@
 import {
-  Grid,
   IconButton,
-  IconButtonProps,
-  Typography
+  IconButtonProps
 } from "@material-ui/core";
 import React from "react";
 import Image, { ImageProps } from "next/image";
-import WbIncandescentOutlinedIcon from "@material-ui/icons/WbIncandescentOutlined";
 
 export type Props = {
   src: ImageProps["src"];

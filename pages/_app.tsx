@@ -1,9 +1,8 @@
-import { createTheme, Theme, ThemeProvider } from "@material-ui/core/styles";
+import { Theme } from "@material-ui/core/styles";
 import { AppProps } from "next/app";
 import { useEffect } from "react";
-import { makeStyles, Typography } from "@material-ui/core";
-import { useRecoilValue, RecoilRoot } from "recoil";
-import { muiThemeType } from "../global/context/index";
+import { makeStyles } from "@material-ui/core";
+import { RecoilRoot } from "recoil";
 import PageTemplate from "components/layout/PageTemplate";
 import "tailwindcss/tailwind.css";
 

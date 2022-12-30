@@ -1,8 +1,6 @@
 import {
-  Grid,
   IconButton,
-  IconButtonProps,
-  Typography
+  IconButtonProps
 } from "@material-ui/core";
 import React from "react";
 import { MenuOutlined } from "@material-ui/icons";
