@@ -5,6 +5,7 @@ import { makeStyles, Typography } from "@material-ui/core";
 import { useRecoilValue, RecoilRoot } from "recoil";
 import { muiThemeType } from "../global/context/index";
 import PageTemplate from "components/layout/PageTemplate";
+import "tailwindcss/tailwind.css";
 
 const useStyles = makeStyles((theme: Theme) => ({
   animate: {

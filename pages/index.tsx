@@ -21,84 +21,44 @@ import clsx from "clsx";
 import { SKILL_LANGUAGES, BIO_ITEMS } from "../constants/portfolio/index";
 import { TextLink } from "components/atoms/TextLink";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  summaryText: {
-    padding: theme.spacing(2.5),
-    textAlign: "center"
-  },
-  spacer: {
-    marginBottom: theme.spacing(2)
-  },
-  lgSpacer: {
-    marginBottom: theme.spacing(3)
-  },
-  xlSpacer: {
-    marginBottom: theme.spacing(4)
-  },
-  year: {
-    fontWeight: 700
-  },
-  largeAvatar: {
-    width: theme.spacing(12),
-    height: theme.spacing(12),
-    border: "solid 2px white",
-    marginBottom: theme.spacing(4)
-  },
-  bioItemTitle: {
-    fontSize: theme.spacing(1)
-  },
-  skillListContainer: {
-    textAlign: "center"
-  }
-}));
-
 const Home: NextPage = () => {
-  const classes = useStyles();
-
   return (
     <MainContainer>
-      <HeaderMenuBar className={classes.spacer} />
-      <SummarySection className={classes.xlSpacer}>
-        <Typography className={classes.summaryText} variant="body2">
-          Hello, I’m Front-End Focused Software Enginner based in Tokyo, Japan!
+      <HeaderMenuBar className={"mb-2"} />
+      <SummarySection className={clsx("mb-4", "p-2", "self-center")}>
+        <Typography variant="body2" className={"text-center"}>
+          Hello, I’m Front-End Focused Software Enginner based in Ishikawa,
+          Japan!
         </Typography>
       </SummarySection>
       <ContentSection
-        className={classes.xlSpacer}
+        className={"p-4"}
         title="BIO"
         content={
           <>
             <Grid container direction="column" alignItems="center">
               <Grid item>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="/img/portfolio.png"
-                  className={classes.largeAvatar}
-                />
+                <Avatar alt="Ryosuke Yoshimoto" src="/img/portfolio.png" />
               </Grid>
             </Grid>
             <Grid container direction="column">
               {BIO_ITEMS.map(bio => {
                 return (
                   <Grid item>
-                    <Typography
-                      variant="body2"
-                      className={clsx(classes.bioItemTitle)}
-                    >
+                    <Typography variant="body2" className={clsx("text-[12px]")}>
                       {bio.title}
                     </Typography>
                     {bio.href ? (
                       <TextLink
+                        variant="body2"
                         href={bio.href}
-                        className={clsx(classes.spacer)}
+                        className={clsx("mb-2")}
+                        target="_blank"
                       >
                         {bio.value}
                       </TextLink>
                     ) : (
-                      <Typography
-                        variant="body2"
-                        className={clsx(classes.spacer)}
-                      >
+                      <Typography variant="body2" className={clsx("mb-2")}>
                         {bio.value}
                       </Typography>
                     )}
@@ -110,12 +70,12 @@ const Home: NextPage = () => {
         }
       />
       <ContentSection
-        className={classes.lgSpacer}
+        className={"mb-4"}
         title="SKILLS"
         content={
           <>
             <Grid
-              className={classes.skillListContainer}
+              className={"p-2"}
               container
               alignContent="center"
               direction="column"

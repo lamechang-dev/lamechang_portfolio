@@ -1,4 +1,5 @@
 import { makeStyles, Theme } from "@material-ui/core";
+import clsx from "clsx";
 import React from "react";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -12,7 +13,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const MainContainer: React.FC = ({ children }) => {
   const classes = useStyles();
-  return <div className={classes.mainContainer}>{children}</div>;
+  return (
+    <div className={clsx(classes.mainContainer, "flex", "flex-col")}>
+      {children}
+      <div />
+    </div>
+  );
 };
 
 export default MainContainer;

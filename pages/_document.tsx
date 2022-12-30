@@ -7,15 +7,15 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <style></style>
+          <style />
           <link
             href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap"
             rel="stylesheet"
-          ></link>
+           />
           <link
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap"
             rel="stylesheet"
-          ></link>
+           />
         </Head>
         <body>
           <Main />

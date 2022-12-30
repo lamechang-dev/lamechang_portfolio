@@ -18,13 +18,12 @@ export const SKILL_LANGUAGES: Array<SkillLanguage> = [
 
 export const BIO_ITEMS = [
   { title: "Name", value: "Ryosuke Yoshimoto" },
-  { title: "Handle", value: "lamechang" },
-  { title: "Adrress", value: "Kanagawa, Japan" },
-  { title: "Job", value: "Web Engineer（Front-End Focused）" },
-  { title: "Hobby", value: "Watching movies, playing music, Cycling" },
+  { title: "Handle", value: "lamechang", href: "https://linktr.ee/lamechang" },
   {
-    title: "Links",
-    value: "Click Here 😊",
-    href: "https://linktr.ee/lamechang"
-  }
+    title: "Adrress",
+    value: "Ishikawa, Japan",
+    href: "https://www.japan-guide.com/list/e1222.html"
+  },
+  { title: "Job", value: "Web Engineer（Front-End Focused）" },
+  { title: "Hobby", value: "ゲーム・ドラム・音楽鑑賞・映画鑑賞" }
 ];
