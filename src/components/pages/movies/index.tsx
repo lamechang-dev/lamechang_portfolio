@@ -118,6 +118,7 @@ const MoviePageComponent: NextPage<PageProps> = ({ movieList, genres }) => {
       </MainContainer>
       <ThemeProvider theme={darkTheme}>
         <MovieDetailModal
+          scroll="paper"
           fullScreen
           open={!!selectedMovie}
           movie={selectedMovie}
