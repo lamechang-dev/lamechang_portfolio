@@ -36,7 +36,7 @@ const Modal: React.VFC<Props> = ({
             "h-[600px]",
             "w-full",
             "max-w-screen",
-            "bg-gradient-to-b from-transparent via-black/50 to-black"
+            "bg-gradient-to-b from-transparent via-black/70 to-black"
           )}
         >
           <IconButton
