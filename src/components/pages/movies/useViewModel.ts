@@ -1,15 +1,10 @@
-import {
-  Genre,
-  MovieGenreId,
-  MovieList,
-  Movie,
-} from "../../src/domain/movies/model";
+import { Genre, MovieGenreId, MovieList, Movie } from "src/domain/movies/model";
 import { useCallback, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   stateSelectedMovie,
   stateSelectedMovieList,
-} from "../../src/context/movies/index";
+} from "src/context/movies/index";
 import {
   stateGenreList,
   stateMyFavoriteMovieList,
