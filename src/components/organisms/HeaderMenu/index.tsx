@@ -65,7 +65,11 @@ const HeaderMenuBar: React.FC<Props> = ({ className }) => {
         <Grid item className={classes.authorNameContainer}>
           <Link href="/" passHref>
             <Typography
-              className={clsx(classes.authorName, "no-underline")}
+              className={clsx(
+                classes.authorName,
+                "no-underline",
+                "cursor-pointer"
+              )}
               color="primary"
               variant="h6"
             >
