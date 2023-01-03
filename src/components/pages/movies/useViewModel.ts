@@ -76,6 +76,10 @@ export const useViewModel = ({
         document.body.style.backgroundColor = theme.palette.background.default;
       }
     }
+
+    return () => {
+      document.body.style.backgroundColor = "";
+    };
   }, [selectedMovie, theme.palette.background.default]);
 
   return {
