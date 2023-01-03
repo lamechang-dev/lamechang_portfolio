@@ -90,5 +90,31 @@ export const useThemeValue = () => {
     },
   });
 
-  return { darkTheme, lightTheme };
+  const completelyDarkTheme = createTheme({
+    typography: {
+      fontFamily: commonTheme.typography.fontFamily,
+      allVariants: {
+        color: "#FFFFFF",
+      },
+    },
+    palette: {
+      type: "dark",
+      background: {
+        default: "#000",
+        paper: "#000",
+      },
+      primary: {
+        main: "#FFFFFF",
+        contrastText: "#BCBA70",
+      },
+      secondary: {
+        main: "#FFFFFF",
+      },
+      grey: {
+        50: "#FFFFFF",
+      },
+    },
+  });
+
+  return { darkTheme, completelyDarkTheme, lightTheme };
 };

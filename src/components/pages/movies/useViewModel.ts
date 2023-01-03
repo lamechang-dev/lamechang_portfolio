@@ -10,6 +10,8 @@ import {
   stateMyFavoriteMovieList,
   stateSelectedGenreIds,
 } from "src/context/movies";
+import { useTheme, Theme } from "@material-ui/core";
+import { isMobile } from "react-device-detect";
 
 export const useViewModel = ({
   movies,
@@ -17,6 +19,8 @@ export const useViewModel = ({
   movies: MovieList;
   genres: Array<Genre>;
 }) => {
+  const theme = useTheme<Theme>();
+
   const [myFavoriteMovieList, setStateMyFavoriteMovieList] = useRecoilState(
     stateMyFavoriteMovieList
   );
@@ -63,6 +67,16 @@ export const useViewModel = ({
   const handleClickResetFilterButton: () => void = useCallback(() => {
     setSelectedGenreIds([]);
   }, [setSelectedGenreIds]);
+
+  useEffect(() => {
+    if (isMobile) {
+      if (!!selectedMovie) {
+        document.body.style.backgroundColor = "black";
+      } else {
+        document.body.style.backgroundColor = theme.palette.background.default;
+      }
+    }
+  }, [selectedMovie, theme.palette.background.default]);
 
   return {
     selectedMovieList: selectedGenreIds.length
