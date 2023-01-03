@@ -133,7 +133,7 @@ const MoviePage: NextPage<PageProps> = ({ movieList, genres }) => {
 
 export default MoviePage;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const genres = await getGenres();
 
   const myFavoriteMovieList = await getMyFavoriteMovies();
