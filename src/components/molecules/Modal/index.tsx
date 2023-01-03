@@ -24,7 +24,9 @@ const Modal: React.VFC<Props> = ({
   const theme = useTheme<Theme>();
   return (
     <Dialog
-      classes={{ paper: clsx("bg-black", "max-w-[400px]", "sm:max-h-[700px]") }}
+      classes={{
+        paper: clsx("bg-black", "sm:max-w-[400px]", "sm:max-h-[700px]"),
+      }}
       {...dialogProps}
     >
       <div>
@@ -33,7 +35,7 @@ const Modal: React.VFC<Props> = ({
             "absolute",
             "h-[600px]",
             "w-full",
-            "max-w-[400px]",
+            "max-w-screen",
             "bg-gradient-to-b from-transparent via-black/50 to-black"
           )}
         >
@@ -44,7 +46,10 @@ const Modal: React.VFC<Props> = ({
             <CloseRounded />
           </IconButton>
         </div>
-        <img src={movie?.thumbnail} className={"max-w-[400px]"} />
+        <img
+          src={movie?.thumbnail}
+          className={clsx("w-screen", "sm:w-auto", "max-w-screen")}
+        />
       </div>
       <div
         className={clsx(
