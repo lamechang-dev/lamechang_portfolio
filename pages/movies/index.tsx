@@ -124,6 +124,7 @@ const MoviePage: NextPage<PageProps> = ({ movieList, genres }) => {
           open={!!selectedMovie}
           movie={selectedMovie}
           onClickCloseButton={handleClickCloseIconButton}
+          onClose={handleClickCloseIconButton}
         />
       </ThemeProvider>
     </>
