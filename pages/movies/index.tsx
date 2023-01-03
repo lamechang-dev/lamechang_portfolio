@@ -54,7 +54,7 @@ const MoviePage: NextPage<PageProps> = ({ movieList, genres }) => {
           subActionText={"Reset Filter"}
           onClickSubActionText={handleClickResetFilterButton}
           content={
-            <div className={clsx("flex", "flex-wrap")}>
+            <div className={clsx("flex", "flex-wrap", "gap-2")}>
               {genreList?.map((genre) => (
                 <Chip
                   text={genre?.name}

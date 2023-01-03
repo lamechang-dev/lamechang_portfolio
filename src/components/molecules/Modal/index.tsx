@@ -80,7 +80,7 @@ const Modal: React.VFC<Props> = ({
             </Typography>
           </div>
         </div>
-        <div className={clsx("flex", "justify-start", "flex-wrap")}>
+        <div className={clsx("flex", "justify-start", "flex-wrap", "gap-1")}>
           {movie?.genres?.map((genre) => (
             <Chip
               text={genre?.name}

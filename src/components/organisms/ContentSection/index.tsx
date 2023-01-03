@@ -28,28 +28,30 @@ const ContentSection: React.FC<Props> = ({
 
   return (
     <div className={clsx(className)}>
-      <div className={clsx("flex items-end mb-4", "justify-between")}>
-        {title && (
-          <Typography className={clsx(classes.title)} variant="body1">
-            {title}
-          </Typography>
-        )}
-        {subActionText && (
-          <div onClick={onClickSubActionText}>
-            <Typography
-              className={clsx(
-                "text-[12px]",
-                "cursor-pointer",
-                "hover:text-gray-300",
-                "transition-colors"
-              )}
-              variant="body1"
-            >
-              {subActionText}
+      {title && subActionText && (
+        <div className={clsx("flex items-end mb-4", "justify-between")}>
+          {title && (
+            <Typography className={clsx(classes.title)} variant="body1">
+              {title}
             </Typography>
-          </div>
-        )}
-      </div>
+          )}
+          {subActionText && (
+            <div onClick={onClickSubActionText}>
+              <Typography
+                className={clsx(
+                  "text-[12px]",
+                  "cursor-pointer",
+                  "hover:text-gray-300",
+                  "transition-colors"
+                )}
+                variant="body1"
+              >
+                {subActionText}
+              </Typography>
+            </div>
+          )}
+        </div>
+      )}
       <div>{content}</div>
     </div>
   );

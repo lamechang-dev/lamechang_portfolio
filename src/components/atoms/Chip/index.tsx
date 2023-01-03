@@ -31,7 +31,6 @@ const Chip: React.VFC<Props> = ({
         "break-keep",
         "px-2",
         "py-1",
-        "m-1",
         "rounded-xl",
         "self-start",
         "transition",
