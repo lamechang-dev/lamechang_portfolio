@@ -1,6 +1,6 @@
 import { useRecoilCallback } from "recoil";
-import { MovieList } from "src/domain/movies/model";
-import { stateMyFavoriteMovieList } from ".";
+import { Movie, MovieList } from "src/domain/movies/model";
+import { stateMyFavoriteMovieList, stateSelectedMovie } from ".";
 
 export const useStateMyFavoriteMovieListActions = () => {
   const setStateMyFavoriteMovieList = useRecoilCallback(
@@ -11,4 +11,19 @@ export const useStateMyFavoriteMovieListActions = () => {
   );
 
   return { setStateMyFavoriteMovieList };
+};
+
+export const useStateSelectedMovieActions = () => {
+  const setStateSelectedMovie = useRecoilCallback(
+    ({ set }) =>
+      (movie: Movie) => {
+        set(stateSelectedMovie, () => movie);
+      }
+  );
+
+  const resetStateSelectedMovie = useRecoilCallback(({ set }) => () => {
+    set(stateSelectedMovie, () => undefined);
+  });
+
+  return { setStateSelectedMovie, resetStateSelectedMovie };
 };

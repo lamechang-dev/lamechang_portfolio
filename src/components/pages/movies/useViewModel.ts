@@ -1,15 +1,22 @@
 import { Genre, MovieGenreId, MovieList, Movie } from "src/domain/movies/model";
 import { useCallback, useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import {
-  stateSelectedMovie,
-  stateSelectedMovieList,
-} from "src/context/movies/index";
+import { useRecoilValue } from "recoil";
+import { stateSelectedMovieList } from "src/context/movies/index";
 import { useTheme, Theme } from "@material-ui/core";
 import { isMobile } from "react-device-detect";
-import { stateGenreList, stateSelectedGenreIds } from "src/context/genres";
-import { useStateMyFavoriteMovieList } from "src/context/movies/selector";
-import { useStateMyFavoriteMovieListActions } from "src/context/movies/actions";
+import {
+  useStateMyFavoriteMovieList,
+  useStateSelectedMovie,
+} from "src/context/movies/selector";
+import {
+  useStateMyFavoriteMovieListActions,
+  useStateSelectedMovieActions,
+} from "src/context/movies/actions";
+import { useStateSelectedGenreIdsActions } from "src/context/genres/actions";
+import {
+  useStateGenreList,
+  useStateSelectedGenreIds,
+} from "src/context/genres/selector";
 
 export const useViewModel = ({
   movies,
@@ -19,14 +26,22 @@ export const useViewModel = ({
 }) => {
   const theme = useTheme<Theme>();
 
-  /** globalState関連 */
+  /** globalState参照 */
   const myFavoriteMovieList = useStateMyFavoriteMovieList();
-  const { setStateMyFavoriteMovieList } = useStateMyFavoriteMovieListActions();
-
-  const [selectedMovie, setSelectedMovie] = useRecoilState(stateSelectedMovie);
-
-  const myFavoriteMoviesGenreList = useRecoilValue(stateGenreList);
+  const selectedMovie = useStateSelectedMovie();
+  const genreList = useStateGenreList();
   const selectedMovieList = useRecoilValue(stateSelectedMovieList);
+  const selectedGenreIds = useStateSelectedGenreIds();
+
+  /** globalState更新系 */
+  const { setStateMyFavoriteMovieList } = useStateMyFavoriteMovieListActions();
+  const { setStateSelectedMovie, resetStateSelectedMovie } =
+    useStateSelectedMovieActions();
+  const {
+    addGenreId2StateSelectedGenreIds,
+    removeGenreIdFromStateSelectedGenreIds,
+    resetStateSelectedGenreIds,
+  } = useStateSelectedGenreIdsActions();
 
   useEffect(() => {
     if (movies) {
@@ -34,37 +49,36 @@ export const useViewModel = ({
     }
   }, [movies, myFavoriteMovieList, setStateMyFavoriteMovieList]);
 
-  const [selectedGenreIds, setSelectedGenreIds] = useRecoilState(
-    stateSelectedGenreIds
-  );
-
+  /** handler系 */
   const handleClickGenreChip: (genreId: MovieGenreId) => void = useCallback(
     (genreId) => {
-      setSelectedGenreIds((prev) => {
-        if (prev.find((id) => id === genreId)) {
-          return prev.filter((id) => id !== genreId);
-        } else {
-          return [...prev, genreId];
-        }
-      });
+      if (selectedGenreIds.find((id) => id === genreId)) {
+        return removeGenreIdFromStateSelectedGenreIds(genreId);
+      } else {
+        return addGenreId2StateSelectedGenreIds(genreId);
+      }
     },
-    [setSelectedGenreIds]
+    [
+      addGenreId2StateSelectedGenreIds,
+      removeGenreIdFromStateSelectedGenreIds,
+      selectedGenreIds,
+    ]
   );
 
   const handleClickMovieThumbnail = useCallback(
     (movie: Movie) => {
-      setSelectedMovie(movie);
+      setStateSelectedMovie(movie);
     },
-    [setSelectedMovie]
+    [setStateSelectedMovie]
   );
 
   const handleClickCloseIconButton = useCallback(() => {
-    setSelectedMovie(undefined);
-  }, [setSelectedMovie]);
+    resetStateSelectedMovie();
+  }, [resetStateSelectedMovie]);
 
   const handleClickResetFilterButton: () => void = useCallback(() => {
-    setSelectedGenreIds([]);
-  }, [setSelectedGenreIds]);
+    resetStateSelectedGenreIds();
+  }, [resetStateSelectedGenreIds]);
 
   useEffect(() => {
     if (isMobile) {
@@ -84,7 +98,7 @@ export const useViewModel = ({
     selectedMovieList: selectedGenreIds.length
       ? selectedMovieList
       : myFavoriteMovieList,
-    genreList: myFavoriteMoviesGenreList,
+    genreList,
     handleClickGenreChip,
     handleClickResetFilterButton,
     handleClickMovieThumbnail,

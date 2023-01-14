@@ -1,10 +1,10 @@
 import { atom, selector } from "recoil";
 import { GLOBAL_STATE_KEYS } from "src/domain";
 import { getUniqueGenresFromGenreList } from "src/domain/genres/getter";
-import { Movie, MovieGenreId } from "src/domain/movies/model";
+import { Genre, MovieGenreId } from "src/domain/movies/model";
 import { stateMyFavoriteMovieList } from "../movies";
 
-export const stateGenreList = selector<Movie["genres"]>({
+export const stateGenreList = selector<Array<Genre>>({
   key: GLOBAL_STATE_KEYS.GENRE.GENRE_LIST,
   get: ({ get }) => {
     const genreList = get(stateMyFavoriteMovieList)
