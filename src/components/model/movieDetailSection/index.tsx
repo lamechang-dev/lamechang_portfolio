@@ -19,7 +19,7 @@ const MovieDetailSection: React.VFC<Props> = ({
 
   return (
     <>
-      <div className={clsx("relative", "h-screen")}>
+      <div className={clsx("relative", "lt-sm:h-screen")}>
         <div
           className={clsx(
             "absolute",
