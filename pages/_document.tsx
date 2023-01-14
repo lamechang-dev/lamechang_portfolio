@@ -17,7 +17,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap"
             rel="stylesheet"
           />
-          <Seo pageImg="https://lamechang-dev.vercel.app/assets/images/ogp.jpg" />
+          <Seo pageImg="https://lamechang-dev.vercel.app/ogp.jpg" />
         </Head>
         <body>
           <Main />
