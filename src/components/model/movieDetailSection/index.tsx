@@ -26,7 +26,10 @@ const MovieDetailSection: React.VFC<Props> = ({
             "h-full",
             "w-full",
             "max-w-screen",
-            "bg-gradient-to-b from-transparent via-black/90 to-black",
+            "bg-gradient-to-b",
+            isMobile
+              ? "from-transparent via-black/90 to-black"
+              : "from-transparent via-black/70 to-black",
             "z-10"
           )}
         >
@@ -43,7 +46,9 @@ const MovieDetailSection: React.VFC<Props> = ({
         </div>
         <img
           src={movie?.thumbnail}
-          className={clsx("w-screen", "sm:h-screen")}
+          className={clsx("sm:h-screen", "object-cover")}
+          width={1000}
+          height={1500}
         />
       </div>
       <div

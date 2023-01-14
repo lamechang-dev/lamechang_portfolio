@@ -127,6 +127,8 @@ const MoviePageComponent: NextPage<PageProps> = ({ movieList, genres }) => {
                         src={movie.thumbnail}
                         alt={movie.title}
                         className={clsx("text-center", "rounded-md")}
+                        width={300}
+                        height={450}
                       />
                     </div>
                     <Typography className={clsx("text-center", "text-xs")}>
