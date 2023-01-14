@@ -1,10 +1,5 @@
 import { AxiosInstance } from "axios";
-import {
-  Genre,
-  Movie,
-  MovieList,
-  MyFavoriteMovie,
-} from "src/domain/movies/model";
+import { Genre, Movie, MovieList } from "src/domain/movies/model";
 import {
   tmdbApiClient,
   TmdbV3GetGenresResponse,
@@ -17,6 +12,8 @@ import {
   convertTmdbV3Genre2Genre,
   convertTmdbV3MyFavoriteMovie2Movie,
 } from "../../domain/movies/converter";
+import { MY_ACCOUNT_ID } from "src/domain/tmdb/constants";
+import { getGenreById } from "src/domain/genres/getter";
 
 export const getLatestMovies: (
   apiClient?: AxiosInstance
@@ -51,18 +48,22 @@ export const getMoviesByIds: (ids: number[]) => Promise<MovieList> = async (
 };
 
 export const getMyFavoriteMovies: (
+  genres: Array<Genre>,
   apiClient?: AxiosInstance
-) => Promise<Array<MyFavoriteMovie>> = async (apiClient = tmdbApiClient) => {
+) => Promise<Array<Movie>> = async (genres, apiClient = tmdbApiClient) => {
   const { data } = await apiClient.get<TmdbV3GetMyFavoriteMoviesResponse>(
-    `/account/${8806334}/favorite/movies`,
+    `/account/${MY_ACCOUNT_ID}/favorite/movies`,
     {
       params: { page: 1 },
     }
   );
 
-  return data.results.map((v3Movie) =>
-    convertTmdbV3MyFavoriteMovie2Movie(v3Movie)
-  );
+  return data.results
+    .map((v3Movie) => convertTmdbV3MyFavoriteMovie2Movie(v3Movie))
+    .map((movie) => ({
+      ...movie,
+      genres: movie.genreIds?.map((genreId) => getGenreById(genres, genreId)),
+    })) as Array<Movie>;
 };
 
 export const getGenres: (

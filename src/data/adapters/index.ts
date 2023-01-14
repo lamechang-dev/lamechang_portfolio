@@ -10,7 +10,7 @@ export const tmdbApiClient = applyCaseMiddleware(
     params: {
       apiKey: process.env.TMDB_API_KEY,
       language: "en-US",
-      sessionId: "38a39d7b12251c6ea4014ecbd957af15d2f1e694",
+      sessionId: process.env.TMDB_SESSION_KEY,
     },
   })
 );
@@ -24,7 +24,7 @@ export type TmdbV3MovieResponse = TmdbV3Movie;
 export type TmdbV3Movie = {
   adult?: boolean;
   backdropPath?: string;
-  genres?: Array<TmdbV3Genre>;
+  genres: Array<TmdbV3Genre>;
   id?: number;
   posterPath?: string | null;
   homePage?: string;

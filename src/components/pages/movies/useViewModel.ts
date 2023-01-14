@@ -5,13 +5,11 @@ import {
   stateSelectedMovie,
   stateSelectedMovieList,
 } from "src/context/movies/index";
-import {
-  stateGenreList,
-  stateMyFavoriteMovieList,
-  stateSelectedGenreIds,
-} from "src/context/movies";
 import { useTheme, Theme } from "@material-ui/core";
 import { isMobile } from "react-device-detect";
+import { stateGenreList, stateSelectedGenreIds } from "src/context/genres";
+import { useStateMyFavoriteMovieList } from "src/context/movies/selector";
+import { useStateMyFavoriteMovieListActions } from "src/context/movies/actions";
 
 export const useViewModel = ({
   movies,
@@ -21,11 +19,14 @@ export const useViewModel = ({
 }) => {
   const theme = useTheme<Theme>();
 
-  const [myFavoriteMovieList, setStateMyFavoriteMovieList] = useRecoilState(
-    stateMyFavoriteMovieList
-  );
+  /** globalState関連 */
+  const myFavoriteMovieList = useStateMyFavoriteMovieList();
+  const { setStateMyFavoriteMovieList } = useStateMyFavoriteMovieListActions();
 
   const [selectedMovie, setSelectedMovie] = useRecoilState(stateSelectedMovie);
+
+  const myFavoriteMoviesGenreList = useRecoilValue(stateGenreList);
+  const selectedMovieList = useRecoilValue(stateSelectedMovieList);
 
   useEffect(() => {
     if (movies) {
@@ -36,9 +37,6 @@ export const useViewModel = ({
   const [selectedGenreIds, setSelectedGenreIds] = useRecoilState(
     stateSelectedGenreIds
   );
-
-  const myFavoriteMoviesGenreList = useRecoilValue(stateGenreList);
-  const selectedMovieList = useRecoilValue(stateSelectedMovieList);
 
   const handleClickGenreChip: (genreId: MovieGenreId) => void = useCallback(
     (genreId) => {

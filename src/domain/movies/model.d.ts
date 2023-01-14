@@ -11,7 +11,7 @@ export type Movie = {
   personalRate?: number;
   thumbnail?: string;
   link?: string;
-  genres?: Array<Genre>;
+  genres: Array<Genre>;
   overview?: string;
 };
 
