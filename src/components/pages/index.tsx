@@ -6,7 +6,7 @@ import MainContainer from "src/components/layout/MainContainer";
 import SummarySection from "src/components/organisms/SummarySection/index";
 import ContentSection from "src/components/organisms/ContentSection";
 import clsx from "clsx";
-import { SKILL_LANGUAGES, BIO_ITEMS } from "src/constants/portfolio/index";
+import { SKILL_LANGUAGES, BIO_ITEMS } from "src/domain/portfoilo/constants";
 import { TextLink } from "src/components/atoms/TextLink";
 
 const TopPageComponent: NextPage = () => {
