@@ -1,6 +1,7 @@
 import React from "react";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@material-ui/core/styles";
+import Seo from "src/components/lib/seo";
 
 class MyDocument extends Document {
   render() {
@@ -16,6 +17,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap"
             rel="stylesheet"
           />
+          <Seo pageImg="https://lamechang-dev.vercel.app/assets/images/ogp.jpg" />
         </Head>
         <body>
           <Main />
