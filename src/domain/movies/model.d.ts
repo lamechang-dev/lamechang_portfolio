@@ -1,7 +1,7 @@
 type MovieGenreId = number;
 
 export type Genre = {
-  id?: number;
+  id?: MovieGenreId;
   name?: string;
 };
 
