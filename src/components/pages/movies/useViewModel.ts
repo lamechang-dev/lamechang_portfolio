@@ -3,7 +3,6 @@ import { useCallback, useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { stateSelectedMovieList } from "src/context/movies/index";
 import { useTheme, Theme } from "@material-ui/core";
-import { isMobile } from "react-device-detect";
 import {
   useStateMyFavoriteMovieList,
   useStateSelectedMovie,
@@ -80,19 +79,20 @@ export const useViewModel = ({
     resetStateSelectedGenreIds();
   }, [resetStateSelectedGenreIds]);
 
-  useEffect(() => {
-    if (isMobile) {
-      if (!!selectedMovie) {
-        document.body.style.backgroundColor = "black";
-      } else {
-        document.body.style.backgroundColor = theme.palette.background.default;
-      }
-    }
+  // FIXME
+  // useEffect(() => {
+  //   if (isMobile) {
+  //     if (!!selectedMovie) {
+  //       document.body.style.backgroundColor = "black";
+  //     } else {
+  //       document.body.style.backgroundColor = theme.palette.background.default;
+  //     }
+  //   }
 
-    return () => {
-      document.body.style.backgroundColor = "";
-    };
-  }, [selectedMovie, theme.palette.background.default]);
+  //   return () => {
+  //     document.body.style.backgroundColor = "";
+  //   };
+  // }, [selectedMovie, theme.palette.background.default]);
 
   return {
     selectedMovieList: selectedGenreIds.length
