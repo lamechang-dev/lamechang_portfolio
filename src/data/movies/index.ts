@@ -50,12 +50,17 @@ export const getMoviesByIds: (ids: number[]) => Promise<MovieList> = async (
 
 export const getMyFavoriteMovies: (
   genres: Array<Genre>,
+  page?: number,
   apiClient?: AxiosInstance
-) => Promise<Array<Movie>> = async (genres, apiClient = tmdbApiClient) => {
+) => Promise<Array<Movie>> = async (
+  genres,
+  page = 1,
+  apiClient = tmdbApiClient
+) => {
   const { data } = await apiClient.get<TmdbV3GetMyFavoriteMoviesResponse>(
     `/account/${MY_ACCOUNT_ID}/favorite/movies`,
     {
-      params: { page: 1 },
+      params: { page },
     }
   );
 
@@ -65,6 +70,16 @@ export const getMyFavoriteMovies: (
       ...movie,
       genres: movie.genreIds?.map((genreId) => getGenreById(genres, genreId)),
     })) as Array<Movie>;
+};
+
+export const getMyFavoriteMoviesTotalCount: (
+  apiClient?: AxiosInstance
+) => Promise<number> = async (apiClient = tmdbApiClient) => {
+  const { data } = await apiClient.get<TmdbV3GetMyFavoriteMoviesResponse>(
+    `/account/${MY_ACCOUNT_ID}/favorite/movies`
+  );
+
+  return data.totalResults;
 };
 
 export const getGenres: (

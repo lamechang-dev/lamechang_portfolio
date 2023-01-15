@@ -1,0 +1,1 @@
+export const MY_FAVORITE_MOVIES_COUNT_PER_PAGE = 20;
