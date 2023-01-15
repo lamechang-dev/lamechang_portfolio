@@ -28,6 +28,8 @@ WIP
 ### GlobalState(Contexts)
 ![image](https://user-images.githubusercontent.com/57059766/212527363-b1a10fb6-80c1-4146-a3cf-e98b1a7d9acd.png)
 
+About the detail, please refer [my blog entry](https://lamechang-dev.hatenablog.com/entry/2023/01/15/133446)
+
 ### Infrastructure
 WIP
 
