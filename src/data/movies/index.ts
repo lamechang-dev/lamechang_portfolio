@@ -1,12 +1,6 @@
 import { AxiosInstance } from "axios";
 import { Movie, MovieList } from "src/domain/movies/model";
-import {
-  tmdbApiClient,
-  TmdbV3GetGenresResponse,
-  TmdbV3GetMyFavoriteMoviesResponse,
-  TmdbV3MovieResponse,
-  TmdbV3MoviesResponse,
-} from "../adapters/index";
+import { tmdbApiClient } from "../adapters/index";
 import {
   convertTmdbV3Movie2Movie,
   convertTmdbV3Genre2Genre,
@@ -15,6 +9,12 @@ import {
 import { MY_ACCOUNT_ID } from "src/domain/tmdb/constants";
 import { getGenreById } from "src/domain/genres/getter";
 import { Genre } from "src/domain/genres/model";
+import {
+  TmdbV3MoviesResponse,
+  TmdbV3MovieResponse,
+  TmdbV3GetMyFavoriteMoviesResponse,
+  TmdbV3GetGenresResponse,
+} from "../adapters/model";
 
 export const getLatestMovies: (
   apiClient?: AxiosInstance
