@@ -28,7 +28,7 @@ const ContentSection: React.FC<Props> = ({
 
   return (
     <div className={clsx(className)}>
-      {title && subActionText && (
+      {(title || subActionText) && (
         <div className={clsx("flex items-end mb-4", "justify-between")}>
           {title && (
             <Typography className={clsx(classes.title)} variant="body1">

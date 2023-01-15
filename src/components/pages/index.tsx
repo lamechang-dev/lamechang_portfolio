@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Avatar, Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { NextPage } from "next";
 import HeaderMenuBar from "src/components/ui/HeaderMenu";
 import PageContainer from "src/components/ui/PageContainer";
@@ -8,6 +8,7 @@ import ContentSection from "src/components/ui/ContentSection";
 import clsx from "clsx";
 import { SKILL_LANGUAGES, BIO_ITEMS } from "src/domain/portfoilo/constants";
 import { TextLink } from "src/components/ui/TextLink";
+import { UserAvatar } from "../model/user/UserAvatar";
 
 const TopPageComponent: NextPage = () => {
   return (
@@ -25,18 +26,12 @@ const TopPageComponent: NextPage = () => {
         content={
           <>
             <div className={clsx("flex", "justify-center", "mb-2")}>
-              <Grid item>
-                <Avatar
-                  alt="Ryosuke Yoshimoto"
-                  src="/img/portfolio.png"
-                  className={clsx("w-16", "h-16", "border-white", "border-2")}
-                />
-              </Grid>
+              <UserAvatar />
             </div>
-            <Grid container direction="column">
+            <div className={clsx("flex", "flex-col")}>
               {BIO_ITEMS.map((bio) => {
                 return (
-                  <Grid item key={bio.title}>
+                  <div key={bio.title}>
                     <Typography variant="body2" className={clsx("text-[12px]")}>
                       {bio.title}
                     </Typography>
@@ -54,10 +49,10 @@ const TopPageComponent: NextPage = () => {
                         {bio.value}
                       </Typography>
                     )}
-                  </Grid>
+                  </div>
                 );
               })}
-            </Grid>
+            </div>
           </>
         }
       />
