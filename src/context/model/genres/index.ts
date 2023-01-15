@@ -5,7 +5,7 @@ import { Genre, MovieGenreId } from "src/domain/genres/model";
 import { stateMyFavoriteMovieList } from "../movies";
 
 export const stateGenreList = selector<Array<Genre>>({
-  key: GLOBAL_STATE_KEYS.GENRE.GENRE_LIST,
+  key: GLOBAL_STATE_KEYS.DOMAIN.GENRE.GENRE_LIST,
   get: ({ get }) => {
     const genreList = get(stateMyFavoriteMovieList)
       .map((movie) => movie.genres)
@@ -16,6 +16,6 @@ export const stateGenreList = selector<Array<Genre>>({
 });
 
 export const stateSelectedGenreIds = atom<Array<MovieGenreId>>({
-  key: GLOBAL_STATE_KEYS.GENRE.SELECTED_GENRE_IDS,
+  key: GLOBAL_STATE_KEYS.DOMAIN.GENRE.SELECTED_GENRE_IDS,
   default: [],
 });
