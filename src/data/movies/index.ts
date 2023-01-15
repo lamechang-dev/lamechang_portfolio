@@ -71,10 +71,7 @@ export const getGenres: (
   apiClient?: AxiosInstance
 ) => Promise<Array<Genre>> = async (apiClient = tmdbApiClient) => {
   const { data } = await apiClient.get<TmdbV3GetGenresResponse>(
-    `/genre/movie/list`,
-    {
-      params: { page: 1 },
-    }
+    `/genre/movie/list`
   );
 
   return data.genres.map((genre) => convertTmdbV3Genre2Genre(genre));
