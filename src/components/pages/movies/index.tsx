@@ -13,20 +13,13 @@ import { Genre } from "src/domain/genres/model";
 import PageContainer from "src/components/ui/PageContainer";
 import { Typography } from "src/components/ui/Typography";
 import { Dialog } from "src/components/ui/Dialog";
-import Pagination from "@material-ui/lab/Pagination";
-import { useRouter } from "next/router";
 
 type PageProps = {
   movieList: MovieList;
   genres: Array<Genre>;
-  lastPageNum: number;
 };
 
-const MoviePageComponent: NextPage<PageProps> = ({
-  movieList,
-  genres,
-  lastPageNum,
-}) => {
+const MoviePageComponent: NextPage<PageProps> = ({ movieList, genres }) => {
   const {
     selectedMovieList,
     genreList,
@@ -42,7 +35,6 @@ const MoviePageComponent: NextPage<PageProps> = ({
   });
 
   const { completelyDarkTheme } = useThemeValue();
-  const router = useRouter();
 
   if (selectedMovie) {
     if (isMobile) {
@@ -110,14 +102,6 @@ const MoviePageComponent: NextPage<PageProps> = ({
         title="MOVIES"
         content={
           <>
-            <Pagination
-              onChange={(_, page) => {
-                console.log(page);
-                router.push(`/movies/${page.toString()}`);
-              }}
-              count={lastPageNum}
-              color="primary"
-            />
             <div
               className={clsx(
                 "flex",
