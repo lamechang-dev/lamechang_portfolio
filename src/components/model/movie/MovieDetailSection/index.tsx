@@ -1,50 +1,58 @@
-import { DialogProps, Typography, IconButton, Theme } from "@material-ui/core";
+import { Typography, IconButton, Theme } from "@material-ui/core";
 import { CloseRounded, Star } from "@material-ui/icons";
 import clsx from "clsx";
-import Chip from "src/components/atoms/Chip";
-import { Movie } from "../../../domain/movies/model";
+import Chip from "src/components/ui/Chip";
+import { Movie } from "../../../../domain/movies/model";
 import { useTheme } from "@material-ui/styles";
+import { isMobile } from "react-device-detect";
 
 type Props = {
   movie?: Movie;
   onClickCloseButton?: () => void;
-} & DialogProps;
+};
 
-const Modal: React.VFC<Props> = ({
+const MovieDetailSection: React.VFC<Props> = ({
   movie,
   onClickCloseButton,
-  ...dialogProps
 }) => {
   const theme = useTheme<Theme>();
 
   return (
     <>
-      <div className={clsx("relative", "h-screen")}>
+      <div className={clsx("relative", "lt-sm:h-screen")}>
         <div
           className={clsx(
             "absolute",
             "h-full",
-            "sm:h-full",
             "w-full",
             "max-w-screen",
-            "bg-gradient-to-b from-transparent via-black/90 to-black",
+            "bg-gradient-to-b",
+            isMobile
+              ? "from-transparent via-black/90 to-black"
+              : "from-transparent via-black/70 to-black",
             "z-10"
           )}
         >
           <IconButton
             onClick={onClickCloseButton}
-            className={clsx("fixed", "right-2", "top-2")}
+            className={clsx(
+              isMobile ? "fixed" : "absolute",
+              "right-2",
+              "top-2"
+            )}
           >
             <CloseRounded />
           </IconButton>
         </div>
         <img
           src={movie?.thumbnail}
-          className={clsx("w-screen", "sm:w-auto", "max-w-screen")}
+          className={clsx("sm:h-screen", "object-cover")}
+          width={1000}
+          height={1500}
         />
       </div>
       <div
-        className={clsx("mt-[-228px]", "flex", "flex-col", "p-4", "gap-y-2")}
+        className={clsx("mt-[-280px]", "flex", "flex-col", "p-4", "gap-y-2")}
       >
         <div className={clsx("z-20", "flex", "items-center", "gap-x-2")}>
           <Typography
@@ -93,4 +101,4 @@ const Modal: React.VFC<Props> = ({
   );
 };
 
-export default Modal;
+export default MovieDetailSection;

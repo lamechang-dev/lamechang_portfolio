@@ -1,16 +1,16 @@
 import { NextPage } from "next";
-import HeaderMenuBar from "src/components/organisms/HeaderMenu";
-import MainContainer from "src/components/layout/MainContainer";
-import ContentSection from "src/components/organisms/ContentSection";
+import HeaderMenuBar from "src/components/ui/HeaderMenu";
+import ContentSection from "src/components/ui/ContentSection";
 import { MovieList } from "src/domain/movies/model";
 import clsx from "clsx";
 import { useViewModel } from "./useViewModel";
-import Chip from "src/components/atoms/Chip";
+import Chip from "src/components/ui/Chip";
 import { Dialog, ThemeProvider, Typography } from "@material-ui/core";
-import { useThemeValue } from "src/components/layout/PageTemplate";
+import { useThemeValue } from "src/components/ui/PageTemplate";
 import { isMobile } from "react-device-detect";
-import MovieDetailSection from "src/components/model/movieDetailSection";
+import MovieDetailSection from "src/components/model/movie/MovieDetailSection";
 import { Genre } from "src/domain/genres/model";
+import PageContainer from "src/components/ui/PageContainer";
 
 type PageProps = {
   movieList: MovieList;
@@ -59,7 +59,7 @@ const MoviePageComponent: NextPage<PageProps> = ({ movieList, genres }) => {
   }
 
   return (
-    <MainContainer>
+    <PageContainer>
       <HeaderMenuBar className={"mb-2"} />
       <ContentSection
         className={"p-4"}
@@ -142,7 +142,7 @@ const MoviePageComponent: NextPage<PageProps> = ({ movieList, genres }) => {
           </>
         }
       />
-    </MainContainer>
+    </PageContainer>
   );
 };
 

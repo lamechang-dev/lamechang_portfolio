@@ -7,8 +7,8 @@ import {
   Menu,
 } from "@material-ui/core";
 import React from "react";
-import LightButton from "src/components/atoms/LightButton";
-import MenuButton from "src/components/atoms/MenuButton";
+import LightButton from "src/components/ui/LightButton";
+import MenuButton from "src/components/ui/MenuButton";
 import clsx from "clsx";
 import { muiThemeType } from "src/context";
 import { useSetRecoilState } from "recoil";

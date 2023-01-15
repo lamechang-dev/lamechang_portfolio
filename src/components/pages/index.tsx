@@ -1,17 +1,17 @@
 import Image from "next/image";
 import { Avatar, Grid, Typography } from "@material-ui/core";
 import { NextPage } from "next";
-import HeaderMenuBar from "src/components/organisms/HeaderMenu";
-import MainContainer from "src/components/layout/MainContainer";
-import SummarySection from "src/components/organisms/SummarySection/index";
-import ContentSection from "src/components/organisms/ContentSection";
+import HeaderMenuBar from "src/components/ui/HeaderMenu";
+import PageContainer from "src/components/ui/PageContainer";
+import SummarySection from "src/components/ui/SummarySection/index";
+import ContentSection from "src/components/ui/ContentSection";
 import clsx from "clsx";
 import { SKILL_LANGUAGES, BIO_ITEMS } from "src/domain/portfoilo/constants";
-import { TextLink } from "src/components/atoms/TextLink";
+import { TextLink } from "src/components/ui/TextLink";
 
 const TopPageComponent: NextPage = () => {
   return (
-    <MainContainer>
+    <PageContainer>
       <HeaderMenuBar className={"mb-2"} />
       <SummarySection className={clsx("mb-4", "p-2", "mx-auto")}>
         <Typography variant="body2" className={"text-center"}>
@@ -87,7 +87,7 @@ const TopPageComponent: NextPage = () => {
           </Grid>
         }
       />
-    </MainContainer>
+    </PageContainer>
   );
 };
 
