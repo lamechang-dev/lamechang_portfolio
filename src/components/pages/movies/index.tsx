@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import HeaderMenuBar from "src/components/organisms/HeaderMenu";
 import MainContainer from "src/components/layout/MainContainer";
 import ContentSection from "src/components/organisms/ContentSection";
-import { MovieList, Genre } from "src/domain/movies/model";
+import { MovieList } from "src/domain/movies/model";
 import clsx from "clsx";
 import { useViewModel } from "./useViewModel";
 import Chip from "src/components/atoms/Chip";
@@ -10,6 +10,7 @@ import { Dialog, ThemeProvider, Typography } from "@material-ui/core";
 import { useThemeValue } from "src/components/layout/PageTemplate";
 import { isMobile } from "react-device-detect";
 import MovieDetailSection from "src/components/model/movieDetailSection";
+import { Genre } from "src/domain/genres/model";
 
 type PageProps = {
   movieList: MovieList;

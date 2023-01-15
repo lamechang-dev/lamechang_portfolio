@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { Genre, Movie, MovieList } from "src/domain/movies/model";
+import { Movie, MovieList } from "src/domain/movies/model";
 import {
   tmdbApiClient,
   TmdbV3GetGenresResponse,
@@ -14,6 +14,7 @@ import {
 } from "../../domain/movies/converter";
 import { MY_ACCOUNT_ID } from "src/domain/tmdb/constants";
 import { getGenreById } from "src/domain/genres/getter";
+import { Genre } from "src/domain/genres/model";
 
 export const getLatestMovies: (
   apiClient?: AxiosInstance

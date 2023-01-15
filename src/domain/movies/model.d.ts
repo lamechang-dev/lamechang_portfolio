@@ -1,10 +1,3 @@
-type MovieGenreId = number;
-
-export type Genre = {
-  id?: MovieGenreId;
-  name?: string;
-};
-
 export type Movie = {
   title: string;
   globalRate?: number;

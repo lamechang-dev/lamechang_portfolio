@@ -1,5 +1,5 @@
 import { useRecoilCallback } from "recoil";
-import { MovieGenreId } from "src/domain/movies/model";
+import { MovieGenreId } from "src/domain/genres/model";
 import { stateSelectedGenreIds } from ".";
 
 export const useStateSelectedGenreIdsActions = () => {

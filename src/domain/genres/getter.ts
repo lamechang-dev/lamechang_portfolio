@@ -1,4 +1,4 @@
-import { Genre } from "../movies/model";
+import { Genre } from "./model";
 
 export const getGenreById = (
   genreList: Array<Genre>,

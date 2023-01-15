@@ -1,4 +1,4 @@
-import { Genre, MovieGenreId, MovieList, Movie } from "src/domain/movies/model";
+import { MovieList, Movie } from "src/domain/movies/model";
 import { useCallback, useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { stateSelectedMovieList } from "src/context/movies/index";
@@ -16,6 +16,7 @@ import {
   useStateGenreList,
   useStateSelectedGenreIds,
 } from "src/context/genres/selector";
+import { Genre, MovieGenreId } from "src/domain/genres/model";
 
 export const useViewModel = ({
   movies,

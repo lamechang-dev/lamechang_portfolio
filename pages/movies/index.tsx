@@ -1,8 +1,9 @@
 import { NextPage } from "next";
-import { MovieList, Genre } from "../../src/domain/movies/model";
+import { MovieList } from "../../src/domain/movies/model";
 import { getMyFavoriteMovies } from "../../src/data/movies/index";
 import { getGenres } from "../../src/data/movies/index";
 import MoviePageComponent from "src/components/pages/movies";
+import { Genre } from "src/domain/genres/model";
 
 type PageProps = {
   myFavoriteMovieList: MovieList;

@@ -3,7 +3,8 @@ import {
   TmdbV3Genre,
   TmdbV3MyFavoriteMovie,
 } from "../../data/adapters/index";
-import { Genre, Movie, MyFavoriteMovie } from "./model";
+import { Genre } from "../genres/model";
+import { Movie, MyFavoriteMovie } from "./model";
 
 export const convertTmdbV3Movie2Movie = (tmdbV3Movie: TmdbV3Movie): Movie => {
   return {
