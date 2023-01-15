@@ -1,16 +1,16 @@
-import { useRecoilCallback } from "recoil";
+import { useGlobalCallback } from "src/context/hooks";
 import { MovieGenreId } from "src/domain/genres/model";
 import { stateSelectedGenreIds } from ".";
 
 export const useStateSelectedGenreIdsActions = () => {
-  const addGenreId2StateSelectedGenreIds = useRecoilCallback(
+  const addGenreId2StateSelectedGenreIds = useGlobalCallback(
     ({ set }) =>
       (genreId: MovieGenreId) => {
         set(stateSelectedGenreIds, (prev) => [...prev, genreId]);
       }
   );
 
-  const removeGenreIdFromStateSelectedGenreIds = useRecoilCallback(
+  const removeGenreIdFromStateSelectedGenreIds = useGlobalCallback(
     ({ set }) =>
       (genreId: MovieGenreId) => {
         set(stateSelectedGenreIds, (prev) =>
@@ -19,7 +19,7 @@ export const useStateSelectedGenreIdsActions = () => {
       }
   );
 
-  const resetStateSelectedGenreIds = useRecoilCallback(({ set }) => () => {
+  const resetStateSelectedGenreIds = useGlobalCallback(({ set }) => () => {
     set(stateSelectedGenreIds, () => []);
   });
 

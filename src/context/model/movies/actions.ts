@@ -1,9 +1,10 @@
 import { useRecoilCallback } from "recoil";
+import { useGlobalCallback } from "src/context/hooks";
 import { Movie, MovieList } from "src/domain/movies/model";
 import { stateMyFavoriteMovieList, stateSelectedMovie } from ".";
 
 export const useStateMyFavoriteMovieListActions = () => {
-  const setStateMyFavoriteMovieList = useRecoilCallback(
+  const setStateMyFavoriteMovieList = useGlobalCallback(
     ({ set }) =>
       (movieList: MovieList) => {
         set(stateMyFavoriteMovieList, () => movieList);
@@ -14,7 +15,7 @@ export const useStateMyFavoriteMovieListActions = () => {
 };
 
 export const useStateSelectedMovieActions = () => {
-  const setStateSelectedMovie = useRecoilCallback(
+  const setStateSelectedMovie = useGlobalCallback(
     ({ set }) =>
       (movie: Movie) => {
         set(stateSelectedMovie, () => movie);
