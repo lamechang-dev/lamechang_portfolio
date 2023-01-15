@@ -29,8 +29,6 @@ export type TmdbV3MyFavoriteMovie = {
 export type TmdbV3GetMyFavoriteMoviesResponse = {
   page: number;
   results: Array<TmdbV3MyFavoriteMovie>;
-  totalPages: number;
-  totalResults: number;
 };
 
 export type TmdbV3Genre = {
