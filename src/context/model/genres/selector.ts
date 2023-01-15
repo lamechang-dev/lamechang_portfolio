@@ -1,5 +1,5 @@
 import { stateGenreList, stateSelectedGenreIds } from ".";
-import { useGlobalValue } from "../hooks";
+import { useGlobalValue } from "../../hooks";
 
 export const useStateGenreList = () => {
   return useGlobalValue(stateGenreList);

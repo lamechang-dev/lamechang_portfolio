@@ -1,21 +1,21 @@
 import { MovieList, Movie } from "src/domain/movies/model";
 import { useCallback, useEffect } from "react";
 import { useRecoilValue } from "recoil";
-import { stateSelectedMovieList } from "src/context/movies/index";
+import { stateSelectedMovieList } from "src/context/model/movies/index";
 import { useTheme, Theme } from "@material-ui/core";
 import {
   useStateMyFavoriteMovieList,
   useStateSelectedMovie,
-} from "src/context/movies/selector";
+} from "src/context/model/movies/selector";
 import {
   useStateMyFavoriteMovieListActions,
   useStateSelectedMovieActions,
-} from "src/context/movies/actions";
-import { useStateSelectedGenreIdsActions } from "src/context/genres/actions";
+} from "src/context/model/movies/actions";
+import { useStateSelectedGenreIdsActions } from "src/context/model/genres/actions";
 import {
   useStateGenreList,
   useStateSelectedGenreIds,
-} from "src/context/genres/selector";
+} from "src/context/model/genres/selector";
 import { Genre, MovieGenreId } from "src/domain/genres/model";
 
 export const useViewModel = ({

@@ -1,6 +1,6 @@
 import { atom, selector } from "recoil";
-import { GLOBAL_STATE_KEYS } from "src/domain";
-import { MovieList, Movie } from "../../domain/movies/model";
+import { GLOBAL_STATE_KEYS } from "src/context/constants";
+import { MovieList, Movie } from "../../../domain/movies/model";
 import { stateSelectedGenreIds } from "../genres";
 
 export const stateMyFavoriteMovieList = atom<MovieList>({

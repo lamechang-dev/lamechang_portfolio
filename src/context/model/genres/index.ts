@@ -1,5 +1,5 @@
 import { atom, selector } from "recoil";
-import { GLOBAL_STATE_KEYS } from "src/domain";
+import { GLOBAL_STATE_KEYS } from "src/context/constants";
 import { getUniqueGenresFromGenreList } from "src/domain/genres/getter";
 import { Genre, MovieGenreId } from "src/domain/genres/model";
 import { stateMyFavoriteMovieList } from "../movies";

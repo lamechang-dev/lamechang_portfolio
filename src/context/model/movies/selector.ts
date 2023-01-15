@@ -3,7 +3,7 @@ import {
   stateSelectedMovie,
   stateSelectedMovieList,
 } from ".";
-import { useGlobalValue } from "../hooks";
+import { useGlobalValue } from "../../hooks";
 
 export const useStateMyFavoriteMovieList = () => {
   return useGlobalValue(stateMyFavoriteMovieList);

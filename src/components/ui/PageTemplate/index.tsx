@@ -1,7 +1,7 @@
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 import { useRecoilValue } from "recoil";
-import { muiThemeType } from "src/context/index";
+import { muiThemeType } from "src/context/ui/theme/index";
 
 type PageTemplateProps = {
   children: React.ReactNode;
