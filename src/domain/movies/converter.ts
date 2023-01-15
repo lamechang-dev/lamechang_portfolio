@@ -1,8 +1,8 @@
 import {
   TmdbV3Movie,
-  TmdbV3Genre,
   TmdbV3MyFavoriteMovie,
-} from "../../data/adapters/index";
+  TmdbV3Genre,
+} from "src/data/adapters/model";
 import { Genre } from "../genres/model";
 import { Movie, MyFavoriteMovie } from "./model";
 
