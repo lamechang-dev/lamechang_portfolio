@@ -5,12 +5,14 @@ import { MovieList } from "src/domain/movies/model";
 import clsx from "clsx";
 import { useViewModel } from "./useViewModel";
 import Chip from "src/components/ui/Chip";
-import { Dialog, ThemeProvider, Typography } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/core";
 import { useThemeValue } from "src/components/ui/PageTemplate";
 import { isMobile } from "react-device-detect";
 import MovieDetailSection from "src/components/model/movie/MovieDetailSection";
 import { Genre } from "src/domain/genres/model";
 import PageContainer from "src/components/ui/PageContainer";
+import { Typography } from "src/components/ui/Typography";
+import { Dialog } from "src/components/ui/Dialog";
 
 type PageProps = {
   movieList: MovieList;

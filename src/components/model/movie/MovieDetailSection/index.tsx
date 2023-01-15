@@ -1,10 +1,12 @@
-import { Typography, IconButton, Theme } from "@material-ui/core";
+import { Theme } from "@material-ui/core";
 import { CloseRounded, Star } from "@material-ui/icons";
 import clsx from "clsx";
 import Chip from "src/components/ui/Chip";
 import { Movie } from "../../../../domain/movies/model";
 import { useTheme } from "@material-ui/styles";
 import { isMobile } from "react-device-detect";
+import { Typography } from "src/components/ui/Typography";
+import { IconButton } from "src/components/ui/IconButton";
 
 type Props = {
   movie?: Movie;

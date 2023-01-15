@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Grid, Typography } from "@material-ui/core";
 import { NextPage } from "next";
 import HeaderMenuBar from "src/components/ui/HeaderMenu";
 import PageContainer from "src/components/ui/PageContainer";
@@ -9,6 +8,7 @@ import clsx from "clsx";
 import { SKILL_LANGUAGES, BIO_ITEMS } from "src/domain/portfoilo/constants";
 import { TextLink } from "src/components/ui/TextLink";
 import { UserAvatar } from "../model/user/UserAvatar";
+import { Typography } from "../ui/Typography";
 
 const TopPageComponent: NextPage = () => {
   return (
@@ -60,26 +60,23 @@ const TopPageComponent: NextPage = () => {
         className={"p-4"}
         title="SKILLS"
         content={
-          <Grid
-            className={"p-2"}
-            container
-            alignContent="center"
-            direction="column"
-            alignItems="center"
+          <div
+            className={clsx(
+              "p-2",
+              "content-center",
+              "flex",
+              "flex-col",
+              "items-center"
+            )}
           >
-            <Grid item container spacing={2}>
+            <div className={clsx("grid", "grid-cols-4", "gap-8")}>
               {SKILL_LANGUAGES.map((skill) => (
-                <Grid
-                  item
-                  xs={4}
-                  key={skill.imageUrl}
-                  className={"text-center"}
-                >
+                <div key={skill.imageUrl} className={clsx("text-center")}>
                   <Image width="80" height="80" src={skill.imageUrl} />
-                </Grid>
+                </div>
               ))}
-            </Grid>
-          </Grid>
+            </div>
+          </div>
         }
       />
     </PageContainer>
