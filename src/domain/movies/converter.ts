@@ -23,7 +23,7 @@ export const convertTmdbV3MyFavoriteMovie2Movie = (
   return {
     title: tmdbV3Movie.title,
     thumbnail:
-      "https://image.tmdb.org/t/p/w780/" + tmdbV3Movie.posterPath ?? "",
+      "https://image.tmdb.org/t/p/w500/" + tmdbV3Movie.posterPath ?? "",
     largeThumbnail:
       "https://image.tmdb.org/t/p/w780/" + tmdbV3Movie.posterPath ?? "",
     genreIds: tmdbV3Movie.genreIds,
