@@ -127,7 +127,7 @@ const MoviePageComponent: NextPage<PageProps> = ({ movieList, genres }) => {
                       }}
                     >
                       <img
-                        src={movie.thumbnail}
+                        src={isMobile ? movie.thumbnail : movie.largeThumbnail}
                         alt={movie.title}
                         className={clsx("text-center", "rounded-md")}
                         width={300}
