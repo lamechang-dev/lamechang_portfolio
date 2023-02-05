@@ -4,9 +4,9 @@ import clsx from "clsx";
 import Chip from "src/components/ui/Chip";
 import { Movie } from "../../../../domain/movies/model";
 import { useTheme } from "@material-ui/styles";
-import { isMobile } from "react-device-detect";
 import { Typography } from "src/components/ui/Typography";
 import { IconButton } from "src/components/ui/IconButton";
+import { isMobile } from "react-device-detect";
 
 type Props = {
   movie?: Movie;
@@ -47,7 +47,7 @@ const MovieDetailSection: React.VFC<Props> = ({
           </IconButton>
         </div>
         <img
-          src={movie?.thumbnail}
+          src={isMobile ? movie?.thumbnail : movie?.largeThumbnail}
           className={clsx("sm:h-screen", "object-cover")}
           width={1000}
           height={1500}
