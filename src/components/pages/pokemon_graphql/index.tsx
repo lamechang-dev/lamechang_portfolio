@@ -20,7 +20,13 @@ const PokemonPageComponent: NextPage = () => {
         content={
           <div>
             {data &&
-              data.pokemons.map((pokemon) => (
+              (
+                data.pokemons as Array<{
+                  id: string;
+                  name: string;
+                  image: string;
+                }>
+              ).map((pokemon) => (
                 <div key={pokemon.id}>
                   <p>{pokemon.name}</p>
                   <img src={pokemon.image} alt={pokemon.name} />
