@@ -1,7 +1,11 @@
 This is a [lamechang](https://lamechang-dev.vercel.app/) portfolio project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-![image](https://user-images.githubusercontent.com/57059766/212526922-cc91c24d-e564-4db8-9d82-356721aa96b7.png)
-![image](https://user-images.githubusercontent.com/57059766/212526956-b1540fc3-fabe-4858-a5f1-26b79ac4b1a1.png)
+
+<p align="left">
+  <img height="500px" width="280px" src="https://user-images.githubusercontent.com/57059766/212526922-cc91c24d-e564-4db8-9d82-356721aa96b7.png" />
+  <img height="500px" width="280px" src="https://user-images.githubusercontent.com/57059766/212526956-b1540fc3-fabe-4858-a5f1-26b79ac4b1a1.png" />
+  <img height="500px" width="280px" src="https://user-images.githubusercontent.com/57059766/213613263-551ca13f-7ecb-4dde-8989-f63f2c19159e.png" />
+</p>
 
 
 ## Requirement
