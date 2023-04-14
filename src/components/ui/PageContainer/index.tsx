@@ -1,6 +1,7 @@
 import { makeStyles, Theme } from "@material-ui/core";
 import clsx from "clsx";
 import React from "react";
+import { FooterSection } from "../FooterSection";
 
 const useStyles = makeStyles((theme: Theme) => ({
   mainContainer: {
@@ -15,7 +16,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const PageContainer: React.FC = ({ children }) => {
   const classes = useStyles();
-  return <div className={clsx(classes.mainContainer)}>{children}</div>;
+  return (
+    <div className={clsx(classes.mainContainer)}>
+      {children}
+      <FooterSection />
+    </div>
+  );
 };
 
 export default PageContainer;
