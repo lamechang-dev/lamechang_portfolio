@@ -1,5 +1,5 @@
 import { Theme } from "@material-ui/core";
-import { CloseRounded, Star } from "@material-ui/icons";
+import { CloseRounded } from "@material-ui/icons";
 import clsx from "clsx";
 import Chip from "src/components/ui/Chip";
 import { Movie } from "../../../../domain/movies/model";
@@ -7,6 +7,7 @@ import { useTheme } from "@material-ui/styles";
 import { Typography } from "src/components/ui/Typography";
 import { IconButton } from "src/components/ui/IconButton";
 import { isMobile } from "react-device-detect";
+import { RateStars } from "../../../ui/RateStars/index";
 
 type Props = {
   movie?: Movie;
@@ -69,10 +70,7 @@ const MovieDetailSection: React.VFC<Props> = ({
             {movie?.title}
           </Typography>
           <div className={clsx("flex", "items-center", "z-20")}>
-            <Star className={clsx("text-yellow-400", "text-sm")} />
-            <Typography className={clsx("text-yellow-400", "text-xs")}>
-              {movie?.globalRate}
-            </Typography>
+            <RateStars rateNum={movie?.globalRate} />
           </div>
         </div>
         <div
