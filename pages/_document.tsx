@@ -1,7 +1,7 @@
 import React from "react";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@material-ui/core/styles";
-import Seo from "src/components/lib/seo";
+import Seo from "src/lib/seo";
 
 class MyDocument extends Document {
   render() {

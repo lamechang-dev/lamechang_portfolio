@@ -15,6 +15,7 @@ import {
   TmdbV3GetMyFavoriteMoviesResponse,
   TmdbV3GetGenresResponse,
 } from "../adapters/model";
+import { getIncrementalArrayByMaxNum } from "src/lib/array";
 
 export const getLatestMovies: (
   apiClient?: AxiosInstance
@@ -53,13 +54,27 @@ export const getMyFavoriteMovies: (
   apiClient?: AxiosInstance
 ) => Promise<Array<Movie>> = async (genres, apiClient = tmdbApiClient) => {
   const { data } = await apiClient.get<TmdbV3GetMyFavoriteMoviesResponse>(
-    `/account/${MY_ACCOUNT_ID}/favorite/movies`,
-    {
-      params: { page: 1 },
-    }
+    `/account/${MY_ACCOUNT_ID}/favorite/movies`
   );
 
-  return data.results
+  const tmdbPageNumList = getIncrementalArrayByMaxNum(data.totalPages);
+
+  const results = await Promise.all(
+    tmdbPageNumList.map(
+      async (page) =>
+        await apiClient
+          .get<TmdbV3GetMyFavoriteMoviesResponse>(
+            `/account/${MY_ACCOUNT_ID}/favorite/movies`,
+            {
+              params: { page },
+            }
+          )
+          .then((data) => data.data.results)
+    )
+  );
+
+  return results
+    .flat()
     .map((v3Movie) => convertTmdbV3MyFavoriteMovie2Movie(v3Movie))
     .map((movie) => ({
       ...movie,
