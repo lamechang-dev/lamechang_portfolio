@@ -5,6 +5,7 @@ import {
 } from "src/data/adapters/model";
 import { Genre } from "../genres/model";
 import { Movie, MyFavoriteMovie } from "./model";
+import { getRoundNumToNearstHalf } from "src/lib/number";
 
 export const convertTmdbV3Movie2Movie = (tmdbV3Movie: TmdbV3Movie): Movie => {
   return {
@@ -27,7 +28,9 @@ export const convertTmdbV3MyFavoriteMovie2Movie = (
     largeThumbnail:
       "https://image.tmdb.org/t/p/w780/" + tmdbV3Movie.posterPath ?? "",
     genreIds: tmdbV3Movie.genreIds,
-    globalRate: tmdbV3Movie.voteAverage,
+    globalRate: tmdbV3Movie.voteAverage
+      ? getRoundNumToNearstHalf(tmdbV3Movie.voteAverage / 2)
+      : 0,
     overview: tmdbV3Movie.overview,
   };
 };
