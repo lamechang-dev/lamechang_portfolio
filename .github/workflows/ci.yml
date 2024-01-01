@@ -22,3 +22,18 @@ jobs:
         run: yarn
       - name: Run tests
         run: yarn test
+
+      # テスト結果をPRにコメントする
+      - name: Comment PR with test results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const testResults = `Your test results here`; // テスト結果の内容を設定
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: testResults
+            })
