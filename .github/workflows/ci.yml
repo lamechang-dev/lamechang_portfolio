@@ -8,31 +8,35 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [14.x, 16.x]
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: Install dependencies
         run: yarn
+
       - name: Run tests
+        id: test
         run: yarn test
 
       # CIの結果をPRにコメント
       - name: Comment PR with CI result
-        if: github.event_name == 'pull_request'
+        if: always() && github.event_name == 'pull_request'
         uses: actions/github-script@v5
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            const ciStatus = (job.status === 'success') ? '成功しました' : '失敗しました';
-            const commentBody = `CIの実行結果: ${ciStatus}`;
+            const testOutcome = (steps.test.outcome === 'success') ? '成功しました' : '失敗しました';
+            const commentBody = `CIのテスト結果: ${testOutcome}`;
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
