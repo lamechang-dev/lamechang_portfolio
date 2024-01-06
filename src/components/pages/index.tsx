@@ -14,9 +14,9 @@ const TopPageComponent: NextPage = () => {
   return (
     <PageContainer>
       <HeaderMenuBar className={"mb-2"} />
-      <SummarySection className={clsx("mb-4", "p-2", "mx-auto")}>
+      <SummarySection className={clsx("mb-4", "p-2", "mx-auto", "shadow-lg")}>
         <Typography variant="body2" className={"text-center"}>
-          Hello, I’m Front-End Focused Software Enginner based in Ishikawa,
+          Hello, I’m Front-End Focused Software Enginner based in Tokyo,
           Japan!
         </Typography>
       </SummarySection>
@@ -71,8 +71,8 @@ const TopPageComponent: NextPage = () => {
           >
             <div className={clsx("grid", "grid-cols-4", "gap-8")}>
               {SKILL_LANGUAGES.map((skill) => (
-                <div key={skill.imageUrl} className={clsx("text-center")}>
-                  <Image width="80" height="80" src={skill.imageUrl} />
+                <div key={skill.imageUrl} className={clsx("text-center", "shadow-lg", "lt-sm:p-1", "p-4", "rounded-xl")}>
+                  <Image width="80" height="80" src={skill.imageUrl} className="text-white" />
                 </div>
               ))}
             </div>
