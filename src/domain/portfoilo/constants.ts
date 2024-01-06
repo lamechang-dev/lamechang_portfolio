@@ -21,8 +21,8 @@ export const BIO_ITEMS = [
   { title: "Handle", value: "lamechang", href: "https://linktr.ee/lamechang" },
   {
     title: "Adrress",
-    value: "Ishikawa, Japan",
-    href: "https://www.japan-guide.com/list/e1222.html"
+    value: "Tokyo, Japan",
+    href: "https://www.japan-guide.com/e/e2164.html"
   },
   { title: "Job", value: "Web Engineer（Front-End Focused）" },
   { title: "Hobby", value: "ゲーム・ドラム・音楽鑑賞・映画鑑賞" }
