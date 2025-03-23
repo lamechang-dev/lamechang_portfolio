@@ -8,6 +8,8 @@ import { Typography } from "src/components/ui/Typography";
 import { IconButton } from "src/components/ui/IconButton";
 import { isMobile } from "react-device-detect";
 import { RateStars } from "../../../ui/RateStars/index";
+import Image from "next/image";
+import { getImageUrlFromMovie } from "src/domain/movies/getter";
 
 type Props = {
   movie?: Movie;
@@ -47,8 +49,9 @@ const MovieDetailSection: React.VFC<Props> = ({
             <CloseRounded />
           </IconButton>
         </div>
-        <img
-          src={isMobile ? movie?.thumbnail : movie?.largeThumbnail}
+        <Image
+          loading="lazy"
+          src={getImageUrlFromMovie(isMobile, movie)}
           className={clsx("sm:h-screen", "object-cover")}
           width={1000}
           height={1500}

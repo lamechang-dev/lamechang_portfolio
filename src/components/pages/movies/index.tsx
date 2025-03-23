@@ -13,7 +13,8 @@ import { Genre } from "src/domain/genres/model";
 import PageContainer from "src/components/ui/PageContainer";
 import { Typography } from "src/components/ui/Typography";
 import { Dialog } from "src/components/ui/Dialog";
-
+import { getImageUrlFromMovie } from "src/domain/movies/getter";
+import Image from "next/image";
 type PageProps = {
   movieList: MovieList;
   genres: Array<Genre>;
@@ -126,8 +127,8 @@ const MoviePageComponent: NextPage<PageProps> = ({ movieList, genres }) => {
                         handleClickMovieThumbnail(movie);
                       }}
                     >
-                      <img
-                        src={isMobile ? movie.thumbnail : movie.largeThumbnail}
+                      <Image
+                        src={getImageUrlFromMovie(isMobile, movie)}
                         alt={movie.title}
                         className={clsx("text-center", "rounded-md")}
                         width={300}
