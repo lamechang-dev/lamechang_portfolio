@@ -15,6 +15,7 @@ import { Typography } from "src/components/ui/Typography";
 import { Dialog } from "src/components/ui/Dialog";
 import { getImageUrlFromMovie } from "src/domain/movies/getter";
 import Image from "next/image";
+import { POSTER_BLUR_IMAGE_BASE64 } from "src/domain/movies/constants";
 type PageProps = {
   movieList: MovieList;
   genres: Array<Genre>;
@@ -128,6 +129,8 @@ const MoviePageComponent: NextPage<PageProps> = ({ movieList, genres }) => {
                       }}
                     >
                       <Image
+                        placeholder="blur"
+                        blurDataURL={POSTER_BLUR_IMAGE_BASE64}
                         src={getImageUrlFromMovie(isMobile, movie)}
                         alt={movie.title}
                         className={clsx("text-center", "rounded-md")}

@@ -10,6 +10,7 @@ import { isMobile } from "react-device-detect";
 import { RateStars } from "../../../ui/RateStars/index";
 import Image from "next/image";
 import { getImageUrlFromMovie } from "src/domain/movies/getter";
+import { POSTER_BLUR_IMAGE_BASE64 } from "src/domain/movies/constants";
 
 type Props = {
   movie?: Movie;
@@ -50,6 +51,8 @@ const MovieDetailSection: React.VFC<Props> = ({
           </IconButton>
         </div>
         <Image
+          placeholder="blur"
+          blurDataURL={POSTER_BLUR_IMAGE_BASE64}
           loading="lazy"
           src={getImageUrlFromMovie(isMobile, movie)}
           className={clsx("sm:h-screen", "object-cover")}
