@@ -16,6 +16,7 @@ import { Dialog } from "src/components/ui/Dialog";
 import { getImageUrlFromMovie } from "src/domain/movies/getter";
 import Image from "next/image";
 import { POSTER_BLUR_IMAGE_BASE64 } from "src/domain/movies/constants";
+import { FadeInImage } from "src/components/ui/FadeInImage";
 type PageProps = {
   movieList: MovieList;
   genres: Array<Genre>;
@@ -128,7 +129,7 @@ const MoviePageComponent: NextPage<PageProps> = ({ movieList, genres }) => {
                         handleClickMovieThumbnail(movie);
                       }}
                     >
-                      <Image
+                      <FadeInImage
                         placeholder="blur"
                         blurDataURL={POSTER_BLUR_IMAGE_BASE64}
                         src={getImageUrlFromMovie(isMobile, movie)}

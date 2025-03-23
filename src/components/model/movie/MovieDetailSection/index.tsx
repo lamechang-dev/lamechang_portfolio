@@ -11,6 +11,7 @@ import { RateStars } from "../../../ui/RateStars/index";
 import Image from "next/image";
 import { getImageUrlFromMovie } from "src/domain/movies/getter";
 import { POSTER_BLUR_IMAGE_BASE64 } from "src/domain/movies/constants";
+import { FadeInImage } from "src/components/ui/FadeInImage";
 
 type Props = {
   movie?: Movie;
@@ -50,7 +51,7 @@ const MovieDetailSection: React.VFC<Props> = ({
             <CloseRounded />
           </IconButton>
         </div>
-        <Image
+        <FadeInImage
           placeholder="blur"
           blurDataURL={POSTER_BLUR_IMAGE_BASE64}
           loading="lazy"
