@@ -8,7 +8,6 @@ import { Typography } from "src/components/ui/Typography";
 import { IconButton } from "src/components/ui/IconButton";
 import { isMobile } from "react-device-detect";
 import { RateStars } from "../../../ui/RateStars/index";
-import Image from "next/image";
 import { getImageUrlFromMovie } from "src/domain/movies/getter";
 import { POSTER_BLUR_IMAGE_BASE64 } from "src/domain/movies/constants";
 import { FadeInImage } from "src/components/ui/FadeInImage";

@@ -14,7 +14,6 @@ import PageContainer from "src/components/ui/PageContainer";
 import { Typography } from "src/components/ui/Typography";
 import { Dialog } from "src/components/ui/Dialog";
 import { getImageUrlFromMovie } from "src/domain/movies/getter";
-import Image from "next/image";
 import { POSTER_BLUR_IMAGE_BASE64 } from "src/domain/movies/constants";
 import { FadeInImage } from "src/components/ui/FadeInImage";
 type PageProps = {

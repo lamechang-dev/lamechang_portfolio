@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { NextPage } from "next";
 import HeaderMenuBar from "src/components/ui/HeaderMenu";
 import PageContainer from "src/components/ui/PageContainer";
