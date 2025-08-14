@@ -10,6 +10,7 @@ export const FadeInImage = ({
 
   return (
     <Image
+      alt={props.alt ?? ""}
       onLoad={(e) => {
         // only fade in the actual image, not the blur placeholder
         if (e.currentTarget.src.startsWith("data:")) return;

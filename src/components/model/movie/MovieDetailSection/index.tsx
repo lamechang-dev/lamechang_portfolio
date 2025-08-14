@@ -1,9 +1,7 @@
-import { Theme } from "@material-ui/core";
 import { CloseRounded } from "@material-ui/icons";
 import clsx from "clsx";
 import Chip from "src/components/ui/Chip";
 import { Movie } from "../../../../domain/movies/model";
-import { useTheme } from "@material-ui/styles";
 import { Typography } from "src/components/ui/Typography";
 import { IconButton } from "src/components/ui/IconButton";
 import { isMobile } from "react-device-detect";
@@ -11,6 +9,8 @@ import { RateStars } from "../../../ui/RateStars/index";
 import { getImageUrlFromMovie } from "src/domain/movies/getter";
 import { POSTER_BLUR_IMAGE_BASE64 } from "src/domain/movies/constants";
 import { FadeInImage } from "src/components/ui/FadeInImage";
+import { useRecoilValue } from "recoil";
+import { muiThemeType } from "src/context/ui/theme";
 
 type Props = {
   movie?: Movie;
@@ -21,7 +21,7 @@ const MovieDetailSection: React.VFC<Props> = ({
   movie,
   onClickCloseButton,
 }) => {
-  const theme = useTheme<Theme>();
+  const themeType = useRecoilValue(muiThemeType);
 
   return (
     <>
@@ -58,6 +58,7 @@ const MovieDetailSection: React.VFC<Props> = ({
           className={clsx("sm:h-screen", "object-cover")}
           width={1000}
           height={1500}
+          priority
         />
       </div>
       <div
@@ -70,7 +71,7 @@ const MovieDetailSection: React.VFC<Props> = ({
               "text-ellipsis",
               "overflow-hidden",
               "whitespace-nowrap",
-              theme.palette.primary
+              "text-lightPaper"
             )}
           >
             {movie?.title}

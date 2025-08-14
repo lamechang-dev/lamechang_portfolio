@@ -38,7 +38,7 @@ const HeaderMenuBar: React.FC<Props> = ({ className }) => {
   const classes = useStyles();
   const setTheme = useSetRecoilState(muiThemeType);
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = React.useMemo(() => Boolean(anchorEl), [anchorEl]);
 
   const handleClickLightButton = React.useCallback(() => {
@@ -55,9 +55,12 @@ const HeaderMenuBar: React.FC<Props> = ({ className }) => {
     setAnchorEl(null);
   };
 
-  const handleClickMenuButton = React.useCallback((event) => {
-    setAnchorEl(event.currentTarget);
-  }, []);
+  const handleClickMenuButton = React.useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget);
+    },
+    []
+  );
 
   return (
     <div className={clsx(classes.headerContainer, className)}>

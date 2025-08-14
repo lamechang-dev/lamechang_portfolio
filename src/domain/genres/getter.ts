@@ -6,7 +6,7 @@ export const getGenreById = (
 ): Genre | undefined => genreList.find((genre) => genre.id === genreId);
 
 export const getUniqueGenresFromGenreList = (genres: Genre[]): Genre[] => {
-  return genres.filter((genre, idx, self) => {
+  return genres?.filter((genre, idx, self) => {
     return idx === self.findIndex((g) => genre?.id === g?.id);
   });
 };

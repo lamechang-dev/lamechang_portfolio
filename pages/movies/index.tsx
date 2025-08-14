@@ -1,27 +1,13 @@
 import { NextPage } from "next";
-import { MovieList } from "../../src/domain/movies/model";
-import { getMyFavoriteMovies } from "../../src/data/movies/index";
-import { getGenres } from "../../src/data/movies/index";
-import MoviePageComponent from "src/components/pages/movies";
-import { Genre } from "src/domain/genres/model";
+import MoviesPageComponent from "src/components/pages/movies";
+import { withCommonStaticProps } from "src/lib/withCommonStaticProps";
 
-type PageProps = {
-  myFavoriteMovieList: MovieList;
-  genres: Array<Genre>;
-};
-
-const MoviePage: NextPage<PageProps> = ({ myFavoriteMovieList, genres }) => {
-  return <MoviePageComponent movieList={myFavoriteMovieList} genres={genres} />;
+const MoviePage: NextPage = () => {
+  return <MoviesPageComponent />;
 };
 
 export default MoviePage;
 
-export const getStaticProps = async () => {
-  const genres = await getGenres();
-
-  const myFavoriteMovieList = await getMyFavoriteMovies(genres);
-
-  return {
-    props: { myFavoriteMovieList, genres },
-  };
-};
+export const getStaticProps = withCommonStaticProps(async () => {
+  return { props: {} };
+});

@@ -14,7 +14,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const PageContainer: React.FC = ({ children }) => {
+const PageContainer: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const classes = useStyles();
   return (
     <div className={clsx(classes.mainContainer)}>

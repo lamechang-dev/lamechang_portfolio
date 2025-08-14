@@ -6,12 +6,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   summaryContainer: {
     background: theme.palette.background.paper,
     borderRadius: "24px",
-    width: "85%"
-  }
+    width: "85%",
+  },
 }));
 
 export type Props = {
   className?: string;
+  children: React.ReactNode;
 };
 
 const SummarySection: React.FC<Props> = ({ children, className }) => {

@@ -16,6 +16,10 @@ export const stateSelectedMovie = atom<Movie | undefined>({
 export const stateSelectedMovieList = selector<MovieList>({
   key: GLOBAL_STATE_KEYS.DOMAIN.MOVIE.SEELCTED_MOVIE_LIST,
   get: ({ get }) => {
+    if (get(stateSelectedGenreIds).length === 0) {
+      return get(stateMyFavoriteMovieList);
+    }
+
     return get(stateMyFavoriteMovieList).filter((movie) => {
       return get(stateSelectedGenreIds).some((id) => {
         return movie.genres?.map((genre) => genre.id).includes(id);

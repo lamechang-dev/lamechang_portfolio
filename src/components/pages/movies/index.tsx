@@ -1,66 +1,25 @@
 import { NextPage } from "next";
 import HeaderMenuBar from "src/components/ui/HeaderMenu";
 import ContentSection from "src/components/ui/ContentSection";
-import { MovieList } from "src/domain/movies/model";
 import clsx from "clsx";
 import { useViewModel } from "./useViewModel";
 import Chip from "src/components/ui/Chip";
-import { ThemeProvider } from "@material-ui/core";
-import { useThemeValue } from "src/components/ui/PageTemplate";
 import { isMobile } from "react-device-detect";
-import MovieDetailSection from "src/components/model/movie/MovieDetailSection";
-import { Genre } from "src/domain/genres/model";
 import PageContainer from "src/components/ui/PageContainer";
 import { Typography } from "src/components/ui/Typography";
-import { Dialog } from "src/components/ui/Dialog";
 import { getImageUrlFromMovie } from "src/domain/movies/getter";
 import { POSTER_BLUR_IMAGE_BASE64 } from "src/domain/movies/constants";
 import { FadeInImage } from "src/components/ui/FadeInImage";
-type PageProps = {
-  movieList: MovieList;
-  genres: Array<Genre>;
-};
 
-const MoviePageComponent: NextPage<PageProps> = ({ movieList, genres }) => {
+const MoviesPageComponent: NextPage = () => {
   const {
     selectedMovieList,
     genreList,
     handleClickGenreChip,
     handleClickResetFilterButton,
     handleClickMovieThumbnail,
-    handleClickCloseIconButton,
     selectedGenreIds,
-    selectedMovie,
-  } = useViewModel({
-    movies: movieList,
-    genres,
-  });
-
-  const { completelyDarkTheme } = useThemeValue();
-
-  if (selectedMovie) {
-    if (isMobile) {
-      return (
-        <ThemeProvider theme={completelyDarkTheme}>
-          <MovieDetailSection
-            movie={selectedMovie}
-            onClickCloseButton={handleClickCloseIconButton}
-          />
-        </ThemeProvider>
-      );
-    } else {
-      return (
-        <ThemeProvider theme={completelyDarkTheme}>
-          <Dialog open={!!selectedMovie}>
-            <MovieDetailSection
-              movie={selectedMovie}
-              onClickCloseButton={handleClickCloseIconButton}
-            />
-          </Dialog>
-        </ThemeProvider>
-      );
-    }
-  }
+  } = useViewModel();
 
   return (
     <PageContainer>
@@ -82,20 +41,21 @@ const MoviePageComponent: NextPage<PageProps> = ({ movieList, genres }) => {
         onClickSubActionText={handleClickResetFilterButton}
         content={
           <div className={clsx("flex", "flex-wrap", "gap-2")}>
-            {genreList?.map((genre) => (
-              <Chip
-                text={genre?.name}
-                key={genre?.id}
-                clickable
-                onClick={handleClickGenreChip}
-                id={genre?.id}
-                variant={
-                  selectedGenreIds.find((id) => id === genre?.id)
-                    ? "fill"
-                    : "outlined"
-                }
-              />
-            ))}
+            {genreList?.length > 0 &&
+              genreList.map((genre) => (
+                <Chip
+                  text={genre?.name}
+                  key={genre?.id}
+                  clickable
+                  onClick={handleClickGenreChip}
+                  id={genre?.id}
+                  variant={
+                    selectedGenreIds.find((id) => id === genre?.id)
+                      ? "fill"
+                      : "outlined"
+                  }
+                />
+              ))}
           </div>
         }
       />
@@ -112,7 +72,7 @@ const MoviePageComponent: NextPage<PageProps> = ({ movieList, genres }) => {
                 "grid grid-cols-3"
               )}
             >
-              {selectedMovieList.map((movie) => {
+              {selectedMovieList?.map((movie) => {
                 return (
                   <div
                     key={movie.title}
@@ -152,4 +112,4 @@ const MoviePageComponent: NextPage<PageProps> = ({ movieList, genres }) => {
   );
 };
 
-export default MoviePageComponent;
+export default MoviesPageComponent;

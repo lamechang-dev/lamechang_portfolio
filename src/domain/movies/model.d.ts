@@ -1,4 +1,5 @@
 export type Movie = {
+  id: number;
   title: string;
   globalRate?: number;
   personalRate?: number;
@@ -10,6 +11,7 @@ export type Movie = {
 };
 
 export type MyFavoriteMovie = {
+  id: number;
   title: string;
   globalRate?: number;
   personalRate?: number;
@@ -19,5 +21,4 @@ export type MyFavoriteMovie = {
   genreIds?: Array<Genre["id"]>;
   overview?: string;
 };
-
 export type MovieList = Array<Movie>;

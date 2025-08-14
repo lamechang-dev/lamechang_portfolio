@@ -8,7 +8,7 @@ export const stateGenreList = selector<Array<Genre>>({
   key: GLOBAL_STATE_KEYS.DOMAIN.GENRE.GENRE_LIST,
   get: ({ get }) => {
     const genreList = get(stateMyFavoriteMovieList)
-      .map((movie) => movie.genres)
+      ?.map((movie) => movie.genres)
       .flat();
 
     return getUniqueGenresFromGenreList(genreList);

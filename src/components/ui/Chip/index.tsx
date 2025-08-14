@@ -1,7 +1,8 @@
-import { Theme, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import clsx from "clsx";
-import { useTheme } from "@material-ui/styles";
 import { useCallback } from "react";
+import { useRecoilValue } from "recoil";
+import { muiThemeType } from "src/context/ui/theme";
 
 type Props = {
   text?: string;
@@ -11,14 +12,14 @@ type Props = {
   id?: number;
 };
 
-const Chip: React.VFC<Props> = ({
+const Chip: React.FC<Props> = ({
   text,
   clickable = false,
   variant = "fill",
   onClick,
   id,
 }) => {
-  const theme = useTheme<Theme>();
+  const themeType = useRecoilValue(muiThemeType);
 
   const handleClick = useCallback(() => {
     id && onClick?.(id);
@@ -35,13 +36,11 @@ const Chip: React.VFC<Props> = ({
         "self-start",
         "transition",
         variant === "fill"
-          ? theme.palette.type === "light"
+          ? themeType === "light"
             ? "bg-lightPaper"
             : "bg-darkPaper"
           : "",
-        theme.palette.type === "light"
-          ? "border-lightPaper"
-          : "border-darkPaper",
+        themeType === "light" ? "border-lightPaper" : "border-darkPaper",
         "border-2",
         clickable && "cursor-pointer"
       )}

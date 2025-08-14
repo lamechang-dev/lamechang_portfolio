@@ -8,6 +8,7 @@ import { Typography } from "src/components/ui/Typography";
 import { useGlobalValue } from "../../../context/hooks/index";
 import { muiThemeType } from "src/context/ui/theme";
 import clsx from "clsx";
+import Image from "next/image";
 
 const PokemonPageComponent: NextPage = () => {
   const { loading, error, data } = useQuery(GET_ALL_POKEMONS, {
@@ -37,7 +38,7 @@ const PokemonPageComponent: NextPage = () => {
                     key={pokemon.id}
                     className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center"
                   >
-                    <img
+                    <Image
                       src={pokemon.image}
                       alt={pokemon.name}
                       className="w-32 h-32 mb-4"
