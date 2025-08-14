@@ -53,7 +53,6 @@ const MovieDetailSection: React.VFC<Props> = ({
         <FadeInImage
           placeholder="blur"
           blurDataURL={POSTER_BLUR_IMAGE_BASE64}
-          loading="lazy"
           src={getImageUrlFromMovie(isMobile, movie)}
           className={clsx("sm:h-screen", "object-cover")}
           width={1000}
@@ -94,7 +93,7 @@ const MovieDetailSection: React.VFC<Props> = ({
               text={genre?.name}
               key={genre?.id}
               id={genre?.id}
-              variant="fill"
+              variant="outlined"
             />
           ))}
         </div>
