@@ -38,7 +38,10 @@ const GlobalStateInitializer = ({ pageProps }: { pageProps: any }) => {
     const { myFavoriteMovieList } = pageProps as {
       myFavoriteMovieList: MovieList;
     };
-    setStateMyFavoriteMovieList(myFavoriteMovieList);
+
+    if (myFavoriteMovieList) {
+      setStateMyFavoriteMovieList(myFavoriteMovieList);
+    }
   }, [pageProps]);
 
   return null;
