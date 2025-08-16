@@ -5,20 +5,26 @@ import { useEffect } from "react";
 import { RecoilRoot } from "recoil";
 import apolloClient from "src/apolloClient";
 import PageTemplate from "src/components/ui/PageTemplate";
-import { useStateMyFavoriteMovieListActions } from "src/context/model/movies/actions";
 import { MovieList } from "src/domain/movies/model";
 import "tailwind/tailwind.css";
+import { stateMyFavoriteMovieList } from "src/context/model/movies";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({
+  Component,
+  pageProps,
+}: AppProps<{ myFavoriteMovieList: MovieList }>) {
   useEffect(() => {
     const jssStyles = document.querySelector("#jss-server-side");
     jssStyles?.parentElement?.removeChild(jssStyles);
   }, []);
 
   return (
-    <RecoilRoot>
+    <RecoilRoot
+      initializeState={(snapshot) => {
+        snapshot.set(stateMyFavoriteMovieList, pageProps.myFavoriteMovieList);
+      }}
+    >
       <React.Fragment>
-        <GlobalStateInitializer pageProps={pageProps} />
         <ApolloProvider client={apolloClient}>
           <PageTemplate>
             <Component {...pageProps} />
@@ -30,19 +36,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
-
-const GlobalStateInitializer = ({ pageProps }: { pageProps: any }) => {
-  const { setStateMyFavoriteMovieList } = useStateMyFavoriteMovieListActions();
-
-  useEffect(() => {
-    const { myFavoriteMovieList } = pageProps as {
-      myFavoriteMovieList: MovieList;
-    };
-
-    if (myFavoriteMovieList) {
-      setStateMyFavoriteMovieList(myFavoriteMovieList);
-    }
-  }, [pageProps]);
-
-  return null;
-};

@@ -96,6 +96,7 @@ const MoviesPageComponent: NextPage = () => {
                         className={clsx("text-center", "rounded-md")}
                         width={300}
                         height={450}
+                        sizes="(max-width:768px) 50vw, (max-width:1200px) 25vw, 20vw"
                       />
                     </div>
                     <Typography className={clsx("text-center", "text-xs")}>
