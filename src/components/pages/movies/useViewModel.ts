@@ -1,66 +1,81 @@
+"use client";
+
 import { Movie } from "src/domain/movies/model";
 import { useCallback } from "react";
-import { stateFilteredMovieList } from "src/context/model/movies/index";
-import { useStateSelectedMovieActions } from "src/context/model/movies/actions";
-import { useStateSelectedGenreIdsActions } from "src/context/model/genres/actions";
-import {
-  useStateGenreList,
-  useStateSelectedGenreIds,
-} from "src/context/model/genres/selector";
-import { MovieGenreId } from "src/domain/genres/model";
-import { useRouter } from "next/router";
-import { useGlobalValue } from "src/context/hooks";
+import { Genre } from "src/domain/genres/model";
+import { useRouter } from "next/navigation";
+import { CommonData } from "src/lib/getCommonData";
+import { useState } from "react";
+import { useEffect } from "react";
+import { getUniqueGenresFromGenreList } from "src/domain/genres/getter";
+import { useMemo } from "react";
 
-export const useViewModel = () => {
+export const useViewModel = ({ myFavoriteMovieList }: CommonData) => {
   const router = useRouter();
 
-  /** globalState参照 */
-  const genreList = useStateGenreList();
-  const filteredMovieList = useGlobalValue(stateFilteredMovieList);
-  const selectedGenreIds = useStateSelectedGenreIds();
-
-  /** globalState更新系 */
-  const { setStateSelectedMovie } = useStateSelectedMovieActions();
-  const {
-    addGenreId2StateSelectedGenreIds,
-    removeGenreIdFromStateSelectedGenreIds,
-    resetStateSelectedGenreIds,
-  } = useStateSelectedGenreIdsActions();
+  const [selectedGenres, setSelectedGenres] = useState<Genre[]>([]);
+  const [filteredMovieList, setFilteredMovieList] =
+    useState<Movie[]>(myFavoriteMovieList);
+  const genres = useMemo<Genre[]>(
+    () =>
+      getUniqueGenresFromGenreList(
+        myFavoriteMovieList.flatMap((movie) => movie.genres)
+      ),
+    [myFavoriteMovieList]
+  );
 
   /** handler系 */
-  const handleClickGenreChip: (genreId: MovieGenreId) => void = useCallback(
-    (genreId) => {
-      if (selectedGenreIds.find((id) => id === genreId)) {
-        return removeGenreIdFromStateSelectedGenreIds(genreId);
+  const handleClickGenreChip: (genre: Genre) => void = useCallback(
+    (genre) => {
+      if (
+        selectedGenres.find((selectedGenre) => selectedGenre.id === genre.id)
+      ) {
+        setSelectedGenres(
+          selectedGenres.filter(
+            (selectedGenre) => selectedGenre.id !== genre.id
+          )
+        );
       } else {
-        return addGenreId2StateSelectedGenreIds(genreId);
+        setSelectedGenres([...selectedGenres, genre]);
       }
     },
-    [
-      addGenreId2StateSelectedGenreIds,
-      removeGenreIdFromStateSelectedGenreIds,
-      selectedGenreIds,
-    ]
+    [selectedGenres]
   );
+
+  useEffect(() => {
+    if (selectedGenres.length === 0) {
+      setFilteredMovieList(myFavoriteMovieList);
+      return;
+    }
+
+    setFilteredMovieList(
+      myFavoriteMovieList.filter((movie) =>
+        movie.genres.some((movieGenre) =>
+          selectedGenres.some(
+            (selectedGenre) => selectedGenre.id === movieGenre.id
+          )
+        )
+      )
+    );
+  }, [selectedGenres, myFavoriteMovieList]);
 
   const handleClickMovieThumbnail = useCallback(
     (movie: Movie) => {
-      setStateSelectedMovie(movie);
       router.push(`/movies/${movie.id}`);
     },
-    [setStateSelectedMovie, router]
+    [router]
   );
 
   const handleClickResetFilterButton: () => void = useCallback(() => {
-    resetStateSelectedGenreIds();
-  }, [resetStateSelectedGenreIds]);
+    setSelectedGenres([]);
+  }, []);
 
   return {
+    genres,
     filteredMovieList,
-    genreList,
     handleClickGenreChip,
     handleClickResetFilterButton,
     handleClickMovieThumbnail,
-    selectedGenreIds,
+    selectedGenres,
   };
 };

@@ -1,4 +1,4 @@
-import { DialogProps, Dialog as MuiDialog } from "@material-ui/core";
+import { DialogProps, Dialog as MuiDialog } from "@mui/material";
 
 type Props = DialogProps;
 

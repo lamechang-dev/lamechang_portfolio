@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 import clsx from "clsx";
 import { useCallback } from "react";
 import { useGlobalValue } from "src/context/hooks";

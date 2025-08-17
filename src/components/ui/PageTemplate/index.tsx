@@ -1,5 +1,5 @@
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
-import { CssBaseline } from "@material-ui/core";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
 import { muiThemeType } from "src/context/ui/theme/index";
 import { useGlobalValue } from "src/context/hooks";
 
@@ -47,7 +47,7 @@ export const useThemeValue = () => {
       },
     },
     palette: {
-      type: "light",
+      mode: "light",
       background: {
         default: "#cbdfe0",
       },
@@ -72,7 +72,7 @@ export const useThemeValue = () => {
       },
     },
     palette: {
-      type: "dark",
+      mode: "dark",
       background: {
         default: "#11202c",
         paper: "#096c8b",
@@ -98,7 +98,7 @@ export const useThemeValue = () => {
       },
     },
     palette: {
-      type: "dark",
+      mode: "dark",
       background: {
         default: "#000",
         paper: "#000",

@@ -1,5 +1,7 @@
+"use client";
+
+import WbIncandescentOutlinedIcon from "@mui/icons-material/WbIncandescentOutlined";
 import React from "react";
-import WbIncandescentOutlinedIcon from "@material-ui/icons/WbIncandescentOutlined";
 import { IconButton, Props as IconButtonProps } from "../IconButton";
 
 export type Props = {} & IconButtonProps;

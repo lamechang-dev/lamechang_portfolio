@@ -1,11 +1,6 @@
-import {
-  Grid,
-  makeStyles,
-  Theme,
-  Typography,
-  MenuItem,
-  Menu,
-} from "@material-ui/core";
+"use client";
+
+import { Typography, MenuItem, Menu, Box } from "@mui/material";
 import React from "react";
 import LightButton from "src/components/ui/LightButton";
 import MenuButton from "src/components/ui/MenuButton";
@@ -14,35 +9,18 @@ import { muiThemeType } from "src/context/ui/theme";
 import Link from "next/link";
 import { useSetGlobalState } from "src/context/hooks";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  headerContainer: {
-    padding: theme.spacing(1),
-    marginRight: -theme.spacing(2),
-    marginLeft: -theme.spacing(2),
-  },
-  authorNameContainer: {
-    alignSelf: "center",
-  },
-  authorName: {
-    fontFamily: "var(--font-comfortaa), cursive",
-    fontSize: "1rem",
-    marginLeft: theme.spacing(1.5),
-  },
-}));
-
 export type Props = {
   className?: string;
 };
 
 const HeaderMenuBar: React.FC<Props> = ({ className }) => {
-  const classes = useStyles();
   const setTheme = useSetGlobalState(muiThemeType);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = React.useMemo(() => Boolean(anchorEl), [anchorEl]);
 
   const handleClickLightButton = React.useCallback(() => {
-    setTheme((prev) => {
+    setTheme((prev: string) => {
       if (prev === "dark") {
         return "light";
       } else {
@@ -63,24 +41,32 @@ const HeaderMenuBar: React.FC<Props> = ({ className }) => {
   );
 
   return (
-    <div className={clsx(classes.headerContainer, className)}>
-      <Grid container justify="space-between">
-        <Grid item className={classes.authorNameContainer}>
+    <Box
+      className={className}
+      sx={{
+        padding: (theme) => theme.spacing(1),
+        marginRight: (theme) => -theme.spacing(2),
+        marginLeft: (theme) => -theme.spacing(2),
+      }}
+    >
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Box sx={{ alignSelf: "center" }}>
           <Link href="/" passHref>
             <Typography
-              className={clsx(
-                classes.authorName,
-                "no-underline",
-                "cursor-pointer"
-              )}
+              className={clsx("no-underline", "cursor-pointer")}
               color="primary"
               variant="h6"
+              sx={{
+                fontFamily: "var(--font-comfortaa), cursive",
+                fontSize: "1rem",
+                marginLeft: (theme) => theme.spacing(1.5),
+              }}
             >
               Lamechang
             </Typography>
           </Link>
-        </Grid>
-        <Grid item>
+        </Box>
+        <Box>
           <LightButton color="secondary" onClick={handleClickLightButton} />
           <MenuButton
             color="secondary"
@@ -90,7 +76,6 @@ const HeaderMenuBar: React.FC<Props> = ({ className }) => {
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}
-            getContentAnchorEl={null}
             open={open}
             onClose={handleClose}
             MenuListProps={{
@@ -119,9 +104,9 @@ const HeaderMenuBar: React.FC<Props> = ({ className }) => {
               <MenuItem onClick={handleClose}>Links</MenuItem>
             </a>
           </Menu>
-        </Grid>
-      </Grid>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

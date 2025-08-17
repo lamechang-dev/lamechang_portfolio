@@ -1,4 +1,4 @@
-import { CloseRounded } from "@material-ui/icons";
+import { CloseRounded } from "@mui/icons-material";
 import clsx from "clsx";
 import Chip from "src/components/ui/Chip";
 import { Movie } from "../../../../domain/movies/model";

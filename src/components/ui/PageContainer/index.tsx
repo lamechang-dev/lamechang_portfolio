@@ -1,28 +1,26 @@
-import { makeStyles, Theme } from "@material-ui/core";
-import clsx from "clsx";
+"use client";
+
+import { Box } from "@mui/material";
 import React from "react";
 import { FooterSection } from "../FooterSection";
-
-const useStyles = makeStyles((theme: Theme) => ({
-  mainContainer: {
-    maxWidth: "720px",
-    margin: "0 auto",
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    display: "flex",
-    flexDirection: "column",
-  },
-}));
 
 const PageContainer: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const classes = useStyles();
   return (
-    <div className={clsx(classes.mainContainer)}>
+    <Box
+      sx={{
+        maxWidth: "720px",
+        margin: "0 auto",
+        paddingLeft: (theme) => theme.spacing(2),
+        paddingRight: (theme) => theme.spacing(2),
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       {children}
       <FooterSection />
-    </div>
+    </Box>
   );
 };
 

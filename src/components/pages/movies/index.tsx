@@ -1,3 +1,5 @@
+"use client";
+
 import { NextPage } from "next";
 import HeaderMenuBar from "src/components/ui/HeaderMenu";
 import ContentSection from "src/components/ui/ContentSection";
@@ -10,16 +12,17 @@ import { Typography } from "src/components/ui/Typography";
 import { getImageUrlFromMovie } from "src/domain/movies/getter";
 import { POSTER_BLUR_IMAGE_BASE64 } from "src/domain/movies/constants";
 import { FadeInImage } from "src/components/ui/FadeInImage";
+import { CommonData } from "src/lib/getCommonData";
 
-const MoviesPageComponent: NextPage = () => {
+const MoviesPageComponent: NextPage<CommonData> = ({ myFavoriteMovieList }) => {
   const {
     filteredMovieList,
-    genreList,
     handleClickGenreChip,
     handleClickResetFilterButton,
     handleClickMovieThumbnail,
-    selectedGenreIds,
-  } = useViewModel();
+    selectedGenres,
+    genres,
+  } = useViewModel({ myFavoriteMovieList });
 
   return (
     <PageContainer>
@@ -41,16 +44,18 @@ const MoviesPageComponent: NextPage = () => {
         onClickSubActionText={handleClickResetFilterButton}
         content={
           <div className={clsx("flex", "flex-wrap", "gap-2")}>
-            {genreList?.length > 0 &&
-              genreList.map((genre) => (
+            {genres?.length > 0 &&
+              genres.map((genre) => (
                 <Chip
                   text={genre?.name}
                   key={genre?.id}
                   clickable
-                  onClick={handleClickGenreChip}
+                  onClick={() => handleClickGenreChip(genre)}
                   id={genre?.id}
                   variant={
-                    selectedGenreIds.find((id) => id === genre?.id)
+                    selectedGenres.find(
+                      (selectedGenre) => selectedGenre.id === genre?.id
+                    )
                       ? "fill"
                       : "outlined"
                   }

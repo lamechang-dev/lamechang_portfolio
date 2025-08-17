@@ -12,6 +12,7 @@ export type TmdbV3Movie = {
   posterPath?: string | null;
   homePage?: string;
   title: string;
+  overview?: string;
 };
 
 export type TmdbV3MyFavoriteMovie = {
