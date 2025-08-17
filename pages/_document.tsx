@@ -2,29 +2,14 @@ import React from "react";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@material-ui/core/styles";
 import Seo from "src/lib/seo";
+import { comfortaa, roboto } from "styles/fonts";
 
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html className={`${comfortaa.variable} ${roboto.variable}`}>
         <Head>
           <style />
-          {/* フォントの取得を高速化 */}
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin=""
-          />
-          {/* display=swapでFOUTに切替 */}
-          <link
-            href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap"
-            rel="stylesheet"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap"
-            rel="stylesheet"
-          />
           <Seo pageImg="https://lamechang-dev.vercel.app/ogp.jpg" />
         </Head>
         <body>

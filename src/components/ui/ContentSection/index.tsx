@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 const useStyles = makeStyles((theme: Theme) => ({
   title: {
-    fontFamily: "'Comfortaa', cursive",
+    fontFamily: "var(--font-comfortaa), cursive",
     textUnderlineOffset: theme.spacing(0.5) + "px",
   },
 }));

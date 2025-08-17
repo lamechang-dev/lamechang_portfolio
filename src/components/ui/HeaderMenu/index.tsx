@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignSelf: "center",
   },
   authorName: {
-    fontFamily: "'Comfortaa', cursive",
+    fontFamily: "var(--font-comfortaa), cursive",
     fontSize: "1rem",
     marginLeft: theme.spacing(1.5),
   },
