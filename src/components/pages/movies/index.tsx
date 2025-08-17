@@ -13,13 +13,13 @@ import { getImageUrlFromMovie } from "src/domain/movies/getter";
 import { POSTER_BLUR_IMAGE_BASE64 } from "src/domain/movies/constants";
 import { FadeInImage } from "src/components/ui/FadeInImage";
 import { CommonData } from "src/lib/getCommonData";
+import Link from "next/link";
 
 const MoviesPageComponent: NextPage<CommonData> = ({ myFavoriteMovieList }) => {
   const {
     filteredMovieList,
     handleClickGenreChip,
     handleClickResetFilterButton,
-    handleClickMovieThumbnail,
     selectedGenres,
     genres,
   } = useViewModel({ myFavoriteMovieList });
@@ -89,20 +89,19 @@ const MoviesPageComponent: NextPage<CommonData> = ({ myFavoriteMovieList }) => {
                         "transition",
                         "cursor-pointer"
                       )}
-                      onClick={() => {
-                        handleClickMovieThumbnail(movie);
-                      }}
                     >
-                      <FadeInImage
-                        placeholder="blur"
-                        blurDataURL={POSTER_BLUR_IMAGE_BASE64}
-                        src={getImageUrlFromMovie(isMobile, movie)}
-                        alt={movie.title}
-                        className={clsx("text-center", "rounded-md")}
-                        width={300}
-                        height={450}
-                        sizes="(max-width:768px) 50vw, (max-width:1200px) 25vw, 20vw"
-                      />
+                      <Link href={`/movies/${movie.id}`}>
+                        <FadeInImage
+                          placeholder="blur"
+                          blurDataURL={POSTER_BLUR_IMAGE_BASE64}
+                          src={getImageUrlFromMovie(isMobile, movie)}
+                          alt={movie.title}
+                          className={clsx("text-center", "rounded-md")}
+                          width={300}
+                          height={450}
+                          sizes="(max-width:768px) 50vw, (max-width:1200px) 25vw, 20vw"
+                        />
+                      </Link>
                     </div>
                     <Typography className={clsx("text-center", "text-xs")}>
                       {movie.title}

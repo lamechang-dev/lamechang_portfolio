@@ -59,13 +59,6 @@ export const useViewModel = ({ myFavoriteMovieList }: CommonData) => {
     );
   }, [selectedGenres, myFavoriteMovieList]);
 
-  const handleClickMovieThumbnail = useCallback(
-    (movie: Movie) => {
-      router.push(`/movies/${movie.id}`);
-    },
-    [router]
-  );
-
   const handleClickResetFilterButton: () => void = useCallback(() => {
     setSelectedGenres([]);
   }, []);
@@ -75,7 +68,6 @@ export const useViewModel = ({ myFavoriteMovieList }: CommonData) => {
     filteredMovieList,
     handleClickGenreChip,
     handleClickResetFilterButton,
-    handleClickMovieThumbnail,
     selectedGenres,
   };
 };
