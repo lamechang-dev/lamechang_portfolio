@@ -1,13 +1,8 @@
-import { makeStyles, Theme, Typography } from "@material-ui/core";
+"use client";
+
+import { Typography } from "@mui/material";
 import React from "react";
 import clsx from "clsx";
-
-const useStyles = makeStyles((theme: Theme) => ({
-  title: {
-    fontFamily: "'Comfortaa', cursive",
-    textUnderlineOffset: theme.spacing(0.5) + "px",
-  },
-}));
 
 export type Props = {
   className?: string;
@@ -24,14 +19,18 @@ const ContentSection: React.FC<Props> = ({
   subActionText,
   onClickSubActionText,
 }) => {
-  const classes = useStyles();
-
   return (
     <div className={clsx(className)}>
       {(title || subActionText) && (
         <div className={clsx("flex items-end mb-4", "justify-between")}>
           {title && (
-            <Typography className={clsx(classes.title)} variant="body1">
+            <Typography
+              variant="body1"
+              sx={{
+                fontFamily: "var(--font-comfortaa), cursive",
+                textUnderlineOffset: (theme) => theme.spacing(0.5) + "px",
+              }}
+            >
               {title}
             </Typography>
           )}

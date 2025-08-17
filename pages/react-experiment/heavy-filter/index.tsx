@@ -7,7 +7,7 @@ import {
   Typography,
   Theme,
   useTheme,
-} from "@material-ui/core";
+} from "@mui/material";
 import HeaderMenuBar from "src/components/ui/HeaderMenu";
 import PageContainer from "src/components/ui/PageContainer";
 import HeavyFilterPageComponent from "src/components/pages/react_experiment/useTransition/heavyFilter";
@@ -64,7 +64,7 @@ const ReactExperimentPage = () => {
           "mb-4",
           "border-2",
           "rounded-lg",
-          theme.palette.type === "light"
+          theme.palette.mode === "light"
             ? "border-lightPaper"
             : "border-darkPaper"
         )}

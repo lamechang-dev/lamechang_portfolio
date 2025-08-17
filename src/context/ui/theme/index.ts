@@ -1,7 +1,4 @@
-import { atom } from "recoil";
-import { PaletteType } from "@material-ui/core";
+import { atom } from "jotai";
+import { PaletteMode } from "@mui/material";
 
-export const muiThemeType = atom<PaletteType>({
-  key: "themeType",
-  default: "dark",
-});
+export const muiThemeType = atom<PaletteMode>("dark");

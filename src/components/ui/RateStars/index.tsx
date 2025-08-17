@@ -1,4 +1,4 @@
-import { Star, StarHalf, StarBorder } from "@material-ui/icons";
+import { Star, StarHalf, StarBorder } from "@mui/icons-material";
 import clsx from "clsx";
 import { useViewModel } from "./useViewModel";
 import { getIncrementalArrayByMaxNum } from "../../../lib/array/index";

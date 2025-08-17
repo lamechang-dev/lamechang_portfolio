@@ -14,6 +14,7 @@ export const convertTmdbV3Movie2Movie = (tmdbV3Movie: TmdbV3Movie): Movie => {
     thumbnail: "https://image.tmdb.org/t/p/w500/" + tmdbV3Movie.posterPath,
     largeThumbnail: "https://image.tmdb.org/t/p/w780/" + tmdbV3Movie.posterPath,
     genres: tmdbV3Movie.genres,
+    overview: tmdbV3Movie.overview,
   };
 };
 

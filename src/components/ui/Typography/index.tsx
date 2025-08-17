@@ -1,7 +1,4 @@
-import {
-  Typography as MuiTypography,
-  TypographyProps,
-} from "@material-ui/core";
+import { Typography as MuiTypography, TypographyProps } from "@mui/material";
 
 type Props = TypographyProps;
 

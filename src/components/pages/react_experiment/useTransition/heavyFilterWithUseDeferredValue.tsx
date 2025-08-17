@@ -1,4 +1,6 @@
-import { TextField } from "@material-ui/core";
+"use client";
+
+import { TextField } from "@mui/material";
 import React from "react";
 import { useState, useDeferredValue, useMemo } from "react";
 import PageContainer from "src/components/ui/PageContainer";

@@ -1,4 +1,4 @@
-import { CloseRounded } from "@material-ui/icons";
+import { CloseRounded } from "@mui/icons-material";
 import clsx from "clsx";
 import Chip from "src/components/ui/Chip";
 import { Movie } from "../../../../domain/movies/model";
@@ -9,8 +9,6 @@ import { RateStars } from "../../../ui/RateStars/index";
 import { getImageUrlFromMovie } from "src/domain/movies/getter";
 import { POSTER_BLUR_IMAGE_BASE64 } from "src/domain/movies/constants";
 import { FadeInImage } from "src/components/ui/FadeInImage";
-import { useRecoilValue } from "recoil";
-import { muiThemeType } from "src/context/ui/theme";
 
 type Props = {
   movie?: Movie;
@@ -21,8 +19,6 @@ const MovieDetailSection: React.VFC<Props> = ({
   movie,
   onClickCloseButton,
 }) => {
-  const themeType = useRecoilValue(muiThemeType);
-
   return (
     <>
       <div className={clsx("relative", "lt-sm:h-screen")}>

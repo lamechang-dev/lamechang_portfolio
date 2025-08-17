@@ -1,40 +1,35 @@
-import { Dialog, ThemeProvider } from "@material-ui/core";
+"use client";
+
+import { Dialog, ThemeProvider } from "@mui/material";
 import { NextPage } from "next";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { isMobile } from "react-device-detect";
 import MovieDetailSection from "src/components/model/movie/MovieDetailSection";
 import { useThemeValue } from "src/components/ui/PageTemplate";
-import { useStateSelectedMovieActions } from "src/context/model/movies/actions";
-import { useStateMyFavoriteMovieList } from "src/context/model/movies/selector";
+import { Movie } from "src/domain/movies/model";
 
 type Props = {
-  id: string;
+  movie: Movie;
 };
 
-const MovieDetailPageComponent: NextPage<Props> = ({ id }) => {
+const MovieDetailPageComponent: NextPage<Props> = ({ movie }) => {
   const router = useRouter();
-  /** globalState参照 */
-  const movieList = useStateMyFavoriteMovieList();
-  const selectedMovie = movieList.find((movie) => movie.id === Number(id));
-
-  const { resetStateSelectedMovie } = useStateSelectedMovieActions();
 
   const handleClickCloseIconButton = useCallback(() => {
-    resetStateSelectedMovie();
     router.push("/movies");
-  }, [resetStateSelectedMovie]);
+  }, []);
 
   const { completelyDarkTheme } = useThemeValue();
 
   return (
     <>
-      {selectedMovie && (
+      {movie && (
         <>
           {isMobile ? (
             <ThemeProvider theme={completelyDarkTheme}>
               <MovieDetailSection
-                movie={selectedMovie}
+                movie={movie}
                 onClickCloseButton={handleClickCloseIconButton}
               />
             </ThemeProvider>
@@ -42,7 +37,7 @@ const MovieDetailPageComponent: NextPage<Props> = ({ id }) => {
             <ThemeProvider theme={completelyDarkTheme}>
               <Dialog open={true}>
                 <MovieDetailSection
-                  movie={selectedMovie}
+                  movie={movie}
                   onClickCloseButton={handleClickCloseIconButton}
                 />
               </Dialog>

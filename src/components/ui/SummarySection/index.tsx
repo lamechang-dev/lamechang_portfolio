@@ -1,14 +1,7 @@
-import { makeStyles, Theme } from "@material-ui/core";
-import React from "react";
-import clsx from "clsx";
+"use client";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  summaryContainer: {
-    background: theme.palette.background.paper,
-    borderRadius: "24px",
-    width: "85%",
-  },
-}));
+import { Box } from "@mui/material";
+import React from "react";
 
 export type Props = {
   className?: string;
@@ -16,10 +9,17 @@ export type Props = {
 };
 
 const SummarySection: React.FC<Props> = ({ children, className }) => {
-  const classes = useStyles();
-
   return (
-    <div className={clsx(classes.summaryContainer, className)}>{children}</div>
+    <Box
+      className={className}
+      sx={{
+        background: (theme) => theme.palette.background.paper,
+        borderRadius: "24px",
+        width: "85%",
+      }}
+    >
+      {children}
+    </Box>
   );
 };
 

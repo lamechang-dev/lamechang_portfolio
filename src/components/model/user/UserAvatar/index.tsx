@@ -1,4 +1,4 @@
-import Avatar from "@material-ui/core/Avatar";
+import { Avatar } from "@mui/material";
 import clsx from "clsx";
 
 export const UserAvatar: React.VFC = () => {

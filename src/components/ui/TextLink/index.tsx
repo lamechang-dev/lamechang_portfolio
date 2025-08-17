@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, LinkProps } from "@material-ui/core";
-import clsx from "clsx";
+import { Link, LinkProps } from "@mui/material";
 
 export type Props = {
   showBorder?: boolean;
@@ -17,7 +16,20 @@ export const TextLink: React.VFC<Props> = ({
   return (
     <Link
       {...linkProps}
-      className={clsx(className, "underline", "hover:no-underline")}
+      className={className}
+      sx={{
+        textDecoration: "underline",
+        "&:hover": {
+          textDecoration: "none",
+        },
+        ...(showBorder && {
+          border: "1px solid",
+          borderColor: "divider",
+          borderRadius: 1,
+          px: 1,
+          py: 0.5,
+        }),
+      }}
     >
       {children}
     </Link>
