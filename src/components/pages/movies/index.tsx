@@ -13,7 +13,7 @@ import { FadeInImage } from "src/components/ui/FadeInImage";
 
 const MoviesPageComponent: NextPage = () => {
   const {
-    selectedMovieList,
+    filteredMovieList,
     genreList,
     handleClickGenreChip,
     handleClickResetFilterButton,
@@ -72,7 +72,7 @@ const MoviesPageComponent: NextPage = () => {
                 "grid grid-cols-3"
               )}
             >
-              {selectedMovieList?.map((movie) => {
+              {filteredMovieList?.map((movie) => {
                 return (
                   <div
                     key={movie.title}

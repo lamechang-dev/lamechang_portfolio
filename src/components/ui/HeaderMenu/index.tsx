@@ -11,8 +11,8 @@ import LightButton from "src/components/ui/LightButton";
 import MenuButton from "src/components/ui/MenuButton";
 import clsx from "clsx";
 import { muiThemeType } from "src/context/ui/theme";
-import { useSetRecoilState } from "recoil";
 import Link from "next/link";
+import { useSetGlobalState } from "src/context/hooks";
 
 const useStyles = makeStyles((theme: Theme) => ({
   headerContainer: {
@@ -36,7 +36,7 @@ export type Props = {
 
 const HeaderMenuBar: React.FC<Props> = ({ className }) => {
   const classes = useStyles();
-  const setTheme = useSetRecoilState(muiThemeType);
+  const setTheme = useSetGlobalState(muiThemeType);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = React.useMemo(() => Boolean(anchorEl), [anchorEl]);

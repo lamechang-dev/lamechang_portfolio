@@ -1,7 +1,7 @@
 import { Typography } from "@material-ui/core";
 import clsx from "clsx";
 import { useCallback } from "react";
-import { useRecoilValue } from "recoil";
+import { useGlobalValue } from "src/context/hooks";
 import { muiThemeType } from "src/context/ui/theme";
 
 type Props = {
@@ -19,7 +19,7 @@ const Chip: React.FC<Props> = ({
   onClick,
   id,
 }) => {
-  const themeType = useRecoilValue(muiThemeType);
+  const themeType = useGlobalValue(muiThemeType);
 
   const handleClick = useCallback(() => {
     id && onClick?.(id);

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { ComponentProps, useState } from "react";
 import clsx from "clsx";
 

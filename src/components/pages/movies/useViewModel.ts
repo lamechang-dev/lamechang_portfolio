@@ -1,7 +1,6 @@
 import { Movie } from "src/domain/movies/model";
 import { useCallback } from "react";
-import { useRecoilValue } from "recoil";
-import { stateSelectedMovieList } from "src/context/model/movies/index";
+import { stateFilteredMovieList } from "src/context/model/movies/index";
 import { useStateSelectedMovieActions } from "src/context/model/movies/actions";
 import { useStateSelectedGenreIdsActions } from "src/context/model/genres/actions";
 import {
@@ -10,13 +9,14 @@ import {
 } from "src/context/model/genres/selector";
 import { MovieGenreId } from "src/domain/genres/model";
 import { useRouter } from "next/router";
+import { useGlobalValue } from "src/context/hooks";
 
 export const useViewModel = () => {
   const router = useRouter();
 
   /** globalState参照 */
   const genreList = useStateGenreList();
-  const selectedMovieList = useRecoilValue(stateSelectedMovieList);
+  const filteredMovieList = useGlobalValue(stateFilteredMovieList);
   const selectedGenreIds = useStateSelectedGenreIds();
 
   /** globalState更新系 */
@@ -56,7 +56,7 @@ export const useViewModel = () => {
   }, [resetStateSelectedGenreIds]);
 
   return {
-    selectedMovieList,
+    filteredMovieList,
     genreList,
     handleClickGenreChip,
     handleClickResetFilterButton,

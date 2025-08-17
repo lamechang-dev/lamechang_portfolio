@@ -1,27 +1,17 @@
-import { useGlobalCallback } from "src/context/hooks";
+import { useSetGlobalState } from "src/context/hooks";
 import { MovieGenreId } from "src/domain/genres/model";
 import { stateSelectedGenreIds } from ".";
 
 export const useStateSelectedGenreIdsActions = () => {
-  const addGenreId2StateSelectedGenreIds = useGlobalCallback(
-    ({ set }) =>
-      (genreId: MovieGenreId) => {
-        set(stateSelectedGenreIds, (prev) => [...prev, genreId]);
-      }
-  );
+  const setStateSelectedGenreIds = useSetGlobalState(stateSelectedGenreIds);
 
-  const removeGenreIdFromStateSelectedGenreIds = useGlobalCallback(
-    ({ set }) =>
-      (genreId: MovieGenreId) => {
-        set(stateSelectedGenreIds, (prev) =>
-          prev.filter((id) => id !== genreId)
-        );
-      }
-  );
+  const addGenreId2StateSelectedGenreIds = (genreId: MovieGenreId) =>
+    setStateSelectedGenreIds((prev) => [...prev, genreId]);
 
-  const resetStateSelectedGenreIds = useGlobalCallback(({ set }) => () => {
-    set(stateSelectedGenreIds, () => []);
-  });
+  const removeGenreIdFromStateSelectedGenreIds = (genreId: MovieGenreId) =>
+    setStateSelectedGenreIds((prev) => prev.filter((id) => id !== genreId));
+
+  const resetStateSelectedGenreIds = () => setStateSelectedGenreIds(() => []);
 
   return {
     addGenreId2StateSelectedGenreIds,

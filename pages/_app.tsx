@@ -1,8 +1,8 @@
 import React from "react";
+import { createStore, Provider as JotaiProvider } from "jotai";
 import { ApolloProvider } from "@apollo/client";
 import { AppProps } from "next/app";
 import { useEffect } from "react";
-import { RecoilRoot } from "recoil";
 import apolloClient from "src/apolloClient";
 import PageTemplate from "src/components/ui/PageTemplate";
 import { MovieList } from "src/domain/movies/model";
@@ -18,20 +18,20 @@ function MyApp({
     jssStyles?.parentElement?.removeChild(jssStyles);
   }, []);
 
+  const store = createStore();
+
+  store.set(stateMyFavoriteMovieList, pageProps.myFavoriteMovieList);
+
   return (
-    <RecoilRoot
-      initializeState={(snapshot) => {
-        snapshot.set(stateMyFavoriteMovieList, pageProps.myFavoriteMovieList);
-      }}
-    >
-      <React.Fragment>
+    <React.Fragment>
+      <JotaiProvider store={store}>
         <ApolloProvider client={apolloClient}>
           <PageTemplate>
             <Component {...pageProps} />
           </PageTemplate>
         </ApolloProvider>
-      </React.Fragment>
-    </RecoilRoot>
+      </JotaiProvider>
+    </React.Fragment>
   );
 }
 

@@ -1,17 +1,7 @@
-import {
-  useRecoilCallback,
-  useRecoilState,
-  useRecoilValue,
-  useRecoilValueLoadable,
-  useSetRecoilState,
-} from "recoil";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 
-export const useGlobalValue = useRecoilValue;
+export const useGlobalValue = useAtomValue;
 
-export const useSetGlobalState = useSetRecoilState;
+export const useSetGlobalState = useSetAtom;
 
-export const useGlobalState = useRecoilState;
-
-export const useGlobalValueLoadable = useRecoilValueLoadable;
-
-export const useGlobalCallback = useRecoilCallback;
+export const useGlobalState = useAtom;

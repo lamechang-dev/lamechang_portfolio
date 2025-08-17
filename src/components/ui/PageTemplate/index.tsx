@@ -1,14 +1,14 @@
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
-import { useRecoilValue } from "recoil";
 import { muiThemeType } from "src/context/ui/theme/index";
+import { useGlobalValue } from "src/context/hooks";
 
 type PageTemplateProps = {
   children: React.ReactNode;
 };
 
 const PageTemplate: React.VFC<PageTemplateProps> = ({ children }) => {
-  const themeType = useRecoilValue(muiThemeType);
+  const themeType = useGlobalValue(muiThemeType);
   const { darkTheme, lightTheme } = useThemeValue();
 
   return (
