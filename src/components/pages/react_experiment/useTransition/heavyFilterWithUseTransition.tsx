@@ -1,7 +1,8 @@
+"use client";
+
 import { TextField } from "@mui/material";
 import React from "react";
 import { useState, useTransition } from "react";
-import PageContainer from "src/components/ui/PageContainer";
 
 const HeavyFilterWithUseTransitionPageComponent = () => {
   const allItems = Array.from({ length: 10000 }, (_, i) => i);
@@ -23,8 +24,9 @@ const HeavyFilterWithUseTransitionPageComponent = () => {
   };
 
   return (
-    <PageContainer>
+    <div>
       <TextField
+        className="w-full"
         value={input}
         onChange={onChange}
         placeholder="数字を入力してフィルタリング..."
@@ -35,7 +37,7 @@ const HeavyFilterWithUseTransitionPageComponent = () => {
           <li key={item}>{item}</li>
         ))}
       </ul>
-    </PageContainer>
+    </div>
   );
 };
 export default React.memo(HeavyFilterWithUseTransitionPageComponent);

@@ -3,7 +3,6 @@
 import { TextField } from "@mui/material";
 import React from "react";
 import { useState, useDeferredValue, useMemo } from "react";
-import PageContainer from "src/components/ui/PageContainer";
 
 const HeavyFilterWithUseDeferredValuePageComponent = () => {
   const allItems = Array.from({ length: 10000 }, (_, i) => i);
@@ -23,8 +22,9 @@ const HeavyFilterWithUseDeferredValuePageComponent = () => {
   };
 
   return (
-    <PageContainer>
+    <div>
       <TextField
+        className="w-full"
         value={input}
         onChange={onChange}
         placeholder="数字を入力してフィルタリング..."
@@ -36,7 +36,7 @@ const HeavyFilterWithUseDeferredValuePageComponent = () => {
           <li key={item}>{item}</li>
         ))}
       </ul>
-    </PageContainer>
+    </div>
   );
 };
 export default React.memo(HeavyFilterWithUseDeferredValuePageComponent);
