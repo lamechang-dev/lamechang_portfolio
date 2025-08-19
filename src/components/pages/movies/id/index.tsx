@@ -35,7 +35,10 @@ const MovieDetailPageComponent: NextPage<Props> = ({ movie }) => {
             </ThemeProvider>
           ) : (
             <ThemeProvider theme={completelyDarkTheme}>
-              <Dialog open={true}>
+              <Dialog
+                open={true}
+                className="mx-auto aspect-[780/1170] h-[100vh]"
+              >
                 <MovieDetailSection
                   movie={movie}
                   onClickCloseButton={handleClickCloseIconButton}

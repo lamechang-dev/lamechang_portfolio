@@ -51,13 +51,21 @@ const MovieDetailSection: React.VFC<Props> = ({
           blurDataURL={POSTER_BLUR_IMAGE_BASE64}
           src={getImageUrlFromMovie(isMobile, movie)}
           className={clsx("sm:h-screen", "object-cover")}
-          width={1000}
-          height={1500}
+          width={isMobile ? 1000 : 780}
+          height={isMobile ? 1500 : 1170}
           priority
         />
       </div>
       <div
-        className={clsx("mt-[-280px]", "flex", "flex-col", "p-4", "gap-y-2")}
+        className={clsx(
+          "absolute",
+          "w-full",
+          "bottom-0",
+          "flex",
+          "flex-col",
+          "p-4",
+          "gap-y-2"
+        )}
       >
         <div className={clsx("z-20", "flex", "items-center", "gap-x-2")}>
           <Typography

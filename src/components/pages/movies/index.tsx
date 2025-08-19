@@ -24,6 +24,8 @@ const MoviesPageComponent: NextPage<CommonData> = ({ myFavoriteMovieList }) => {
     genres,
   } = useViewModel({ myFavoriteMovieList });
 
+  console.log(genres.map);
+
   return (
     <PageContainer>
       <HeaderMenuBar className={"mb-2"} />
