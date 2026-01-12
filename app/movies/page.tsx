@@ -1,9 +1,8 @@
 import MoviesPageComponent from "src/components/pages/movies";
-import { getGenres, getMyFavoriteMovies } from "src/data/movies";
+import { getGenres, getMyFavoriteMovies } from "src/services";
 
 const MoviePage = async () => {
-  const genres = await getGenres();
-  const myFavoriteMovieList = await getMyFavoriteMovies(genres);
+  const myFavoriteMovieList = await getMyFavoriteMovies();
 
   return <MoviesPageComponent myFavoriteMovieList={myFavoriteMovieList} />;
 };

@@ -17,19 +17,6 @@ import {
 } from "../adapters/model";
 import { getIncrementalArrayByMaxNum } from "src/lib/array";
 
-export const getLatestMovies: (
-  apiClient?: AxiosInstance
-) => Promise<MovieList> = async (apiClient = tmdbApiClient) => {
-  const { data } = await apiClient.get<TmdbV3MoviesResponse>(
-    "movie/now_playing",
-    {
-      params: { page: 1 },
-    }
-  );
-
-  return data.results.map((v3Movie) => convertTmdbV3Movie2Movie(v3Movie));
-};
-
 export const getMovieById: (
   id: number,
   apiClient?: AxiosInstance
@@ -37,16 +24,6 @@ export const getMovieById: (
   const { data } = await apiClient.get<TmdbV3MovieResponse>(`movie/${id}`);
 
   return convertTmdbV3Movie2Movie(data);
-};
-
-export const getMoviesByIds: (ids: number[]) => Promise<MovieList> = async (
-  ids
-) => {
-  const movieList = await Promise.all(ids.map((id) => getMovieById(id))).then(
-    (values) => values
-  );
-
-  return movieList;
 };
 
 export const getMyFavoriteMovies: (
