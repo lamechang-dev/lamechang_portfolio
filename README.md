@@ -9,7 +9,7 @@ This is a [lamechang](https://lamechang-dev.vercel.app/) portfolio project boots
 
 
 ## Requirement
-Node.js v16~
+Node.js v22~
 
 ## Getting Started
 
