@@ -24,7 +24,6 @@ const MoviesPageComponent: NextPage<CommonData> = ({ myFavoriteMovieList }) => {
     genres,
   } = useViewModel({ myFavoriteMovieList });
 
-  console.log(genres.map);
 
   return (
     <PageContainer>

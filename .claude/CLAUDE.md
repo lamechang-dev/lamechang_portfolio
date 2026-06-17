@@ -12,7 +12,11 @@ UI: MUI 7 + Tailwind CSS 3 / 状態管理: Jotai 2 / データ取得: axios
 - `src/components/model/` — ドメイン固有コンポーネント
 - `src/components/pages/` — ページ単位の合成コンポーネント + `useViewModel.ts`
 - `src/context/` — Jotai の atom 定義（`hooks/`, `model/`, `ui/`）
-- `src/domain/` — ドメインロジック（`movies`, `genres`, `tmdb`, `portfoilo`）
+- `src/domain/` — ドメインロジック（`movies`, `genres`, `tmdb`, `portfoilo`）。各ディレクトリのファイル構成は以下:
+  - `model.d.ts` — アプリ内部のドメイン型定義。外部 API の型に依存しない
+  - `converter.ts` — 外部 API レスポンス型（例: `TmdbV3Movie`）をドメイン型に変換するピュア関数
+  - `getter.ts` — ドメインモデルから値を取り出すピュア関数（表示用の加工など）
+  - `constants.ts` — ドメイン固有の定数
 - `src/data/` — API アダプタ（`adapters/`: axios クライアント、`movies/`: TMDB 呼び出し）
 - `src/lib/` — 汎用ユーティリティ（`array/`, `number/`, `seo/`）
 - `src/queries/` — GraphQL クエリ定義
