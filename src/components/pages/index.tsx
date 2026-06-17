@@ -16,7 +16,7 @@ const TopPageComponent: NextPage = () => {
       <HeaderMenuBar className={"mb-2"} />
       <SummarySection className={clsx("mb-4", "p-2", "mx-auto", "shadow-lg")}>
         <Typography variant="body2" className={"text-center"}>
-          Hello, I’m Front-End Focused Software Enginner based in Tokyo, Japan!
+          Hello, I'm a software engineer based in Tokyo, Japan!
         </Typography>
       </SummarySection>
       <ContentSection
