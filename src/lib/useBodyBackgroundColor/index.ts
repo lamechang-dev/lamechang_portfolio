@@ -1,7 +1,11 @@
-import { useEffect } from "react";
+import { useLayoutEffect, useEffect } from "react";
+
+// useLayoutEffect causes SSR warnings, so fall back to useEffect on server
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export const useBodyBackgroundColor = (color: string) => {
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const prevBody = document.body.style.backgroundColor;
     const prevHtml = document.documentElement.style.backgroundColor;
     document.body.style.backgroundColor = color;
