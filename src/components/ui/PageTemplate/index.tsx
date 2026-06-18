@@ -2,6 +2,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { muiThemeType } from "src/context/ui/theme/index";
 import { useGlobalValue } from "src/context/hooks";
+import { CursorGlow } from "src/components/ui/CursorGlow";
 
 type PageTemplateProps = {
   children: React.ReactNode;
@@ -14,7 +15,8 @@ const PageTemplate: React.VFC<PageTemplateProps> = ({ children }) => {
   return (
     <ThemeProvider theme={themeType === "light" ? lightTheme : darkTheme}>
       <CssBaseline />
-      {children}
+      <CursorGlow isDark={themeType === "dark"} />
+      <div style={{ position: "relative", zIndex: 1 }}>{children}</div>
     </ThemeProvider>
   );
 };
