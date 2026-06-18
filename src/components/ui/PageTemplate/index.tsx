@@ -48,17 +48,6 @@ export const useThemeValue = () => {
         color: "#035169",
       },
     },
-    components: {
-      MuiCssBaseline: {
-        styleOverrides: {
-          body: {
-            background:
-              "linear-gradient(135deg, #b8d5e8 0%, #cbdfe0 50%, #cce5d8 100%)",
-            minHeight: "100vh",
-          },
-        },
-      },
-    },
     palette: {
       mode: "light",
       background: {
@@ -82,17 +71,6 @@ export const useThemeValue = () => {
       fontFamily: commonTheme.typography.fontFamily,
       allVariants: {
         color: "#FFFFFF",
-      },
-    },
-    components: {
-      MuiCssBaseline: {
-        styleOverrides: {
-          body: {
-            background:
-              "linear-gradient(135deg, #0a1a26 0%, #11202c 55%, #0d2421 100%)",
-            minHeight: "100vh",
-          },
-        },
       },
     },
     palette: {
