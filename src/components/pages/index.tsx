@@ -1,14 +1,19 @@
-import { NextPage } from "next";
 import HeaderMenuBar from "src/components/ui/HeaderMenu";
 import PageContainer from "src/components/ui/PageContainer";
 import ContentSection from "src/components/ui/ContentSection";
 import clsx from "clsx";
 import { BIO_ITEMS } from "src/domain/portfoilo/constants";
+import { BlogPost } from "src/domain/blog/model";
 import { TextLink } from "src/components/ui/TextLink";
 import { UserAvatar } from "../model/user/UserAvatar";
 import { Typography } from "../ui/Typography";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-const TopPageComponent: NextPage = () => {
+type Props = {
+  blogPosts: BlogPost[];
+};
+
+const TopPageComponent: React.FC<Props> = ({ blogPosts }) => {
   return (
     <PageContainer>
       <HeaderMenuBar className={"mb-2"} />
@@ -89,6 +94,65 @@ const TopPageComponent: NextPage = () => {
           </div>
         }
       />
+
+      {/* BLOG */}
+      {blogPosts.length > 0 && (
+        <ContentSection
+          className={"p-4 mt-6"}
+          title="BLOG"
+          content={
+            <div className={clsx("flex", "flex-col")}>
+              {blogPosts.map((post) => (
+                <a
+                  key={post.url}
+                  href={post.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={clsx(
+                    "group",
+                    "flex", "items-center", "justify-between", "gap-4",
+                    "px-3", "py-3",
+                    "rounded-lg",
+                    "transition-all", "duration-200",
+                    "hover:bg-black/5",
+                    "dark:hover:bg-white/5",
+                    "no-underline"
+                  )}
+                >
+                  <div className={clsx("flex", "flex-col", "gap-1", "min-w-0")}>
+                    <Typography
+                      variant="body2"
+                      className={clsx("text-[13px]", "line-clamp-1", "font-medium")}
+                    >
+                      {post.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      className={clsx("text-[11px]")}
+                      sx={{ opacity: 0.45 }}
+                    >
+                      {new Date(post.publishedAt).toLocaleDateString("ja-JP", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                      })}
+                    </Typography>
+                  </div>
+                  <ArrowForwardIcon
+                    className={clsx(
+                      "flex-shrink-0",
+                      "opacity-0", "group-hover:opacity-100",
+                      "translate-x-[-4px]", "group-hover:translate-x-0",
+                      "transition-all", "duration-200"
+                    )}
+                    sx={{ fontSize: 16 }}
+                  />
+                </a>
+              ))}
+            </div>
+          }
+        />
+      )}
 
       {/* SKILLS */}
       {/* <ContentSection
