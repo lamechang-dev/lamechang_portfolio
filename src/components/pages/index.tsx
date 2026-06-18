@@ -122,7 +122,7 @@ const TopPageComponent: React.FC<Props> = ({ blogPosts }) => {
                   <div className={clsx("flex", "flex-col", "gap-1", "min-w-0")}>
                     <Typography
                       variant="body2"
-                      className={clsx("text-[13px]", "line-clamp-1", "font-medium")}
+                      className={clsx("text-[14px]", "line-clamp-1", "font-medium")}
                     >
                       {post.title}
                     </Typography>
