@@ -3,6 +3,7 @@ import { CssBaseline } from "@mui/material";
 import { muiThemeType } from "src/context/ui/theme/index";
 import { useGlobalValue } from "src/context/hooks";
 import { CursorGlow } from "src/components/ui/CursorGlow";
+import { useBodyBackgroundColor } from "src/lib/useBodyBackgroundColor";
 
 type PageTemplateProps = {
   children: React.ReactNode;
@@ -11,9 +12,12 @@ type PageTemplateProps = {
 const PageTemplate: React.VFC<PageTemplateProps> = ({ children }) => {
   const themeType = useGlobalValue(muiThemeType);
   const { darkTheme, lightTheme } = useThemeValue();
+  const theme = themeType === "light" ? lightTheme : darkTheme;
+
+  useBodyBackgroundColor(theme.palette.background.default);
 
   return (
-    <ThemeProvider theme={themeType === "light" ? lightTheme : darkTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <CursorGlow isDark={themeType === "dark"} />
       <div style={{ position: "relative", zIndex: 1 }}>{children}</div>
