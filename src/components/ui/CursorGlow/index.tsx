@@ -48,7 +48,7 @@ export const CursorGlow: React.FC<Props> = ({ isDark = false }) => {
 
   const glowColor = isDark
     ? "rgba(2, 127, 163, 0.18)"
-    : "rgba(3, 81, 105, 0.08)";
+    : "rgba(3, 81, 105, 0.18)";
 
   return (
     <div
