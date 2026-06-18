@@ -18,6 +18,7 @@ export default function RootLayout({
     <html lang="en" className={`${comfortaa.variable} ${roboto.variable}`}>
       <head>
         <Seo pageImg="https://lamechang-dev.vercel.app/ogp.jpg" />
+        <meta name="theme-color" content="#11202c" />
       </head>
       <body>
         <JotaiProvider store={store}>
