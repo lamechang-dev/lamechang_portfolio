@@ -149,6 +149,16 @@ const TopPageComponent: React.FC<Props> = ({ blogPosts }) => {
                   />
                 </a>
               ))}
+              <div className={clsx("flex", "justify-end", "mt-2", "px-3")}>
+                <TextLink
+                  href="https://lamechang-dev.hatenablog.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={clsx("text-[12px]")}
+                >
+                  read more →
+                </TextLink>
+              </div>
             </div>
           }
         />

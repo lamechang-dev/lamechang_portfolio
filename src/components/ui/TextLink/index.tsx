@@ -18,9 +18,15 @@ export const TextLink: React.VFC<Props> = ({
       {...linkProps}
       className={className}
       sx={{
-        textDecoration: "underline",
+        textDecoration: "none",
+        backgroundImage: "linear-gradient(currentColor, currentColor)",
+        backgroundSize: "100% 1px",
+        backgroundPosition: "0 100%",
+        backgroundRepeat: "no-repeat",
+        transition: "background-size 0.3s ease",
         "&:hover": {
           textDecoration: "none",
+          backgroundSize: "0% 1px",
         },
         ...(showBorder && {
           border: "1px solid",
