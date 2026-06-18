@@ -1,97 +1,132 @@
 import { NextPage } from "next";
 import HeaderMenuBar from "src/components/ui/HeaderMenu";
 import PageContainer from "src/components/ui/PageContainer";
-import SummarySection from "src/components/ui/SummarySection/index";
 import ContentSection from "src/components/ui/ContentSection";
 import clsx from "clsx";
-import { SKILL_LANGUAGES, BIO_ITEMS } from "src/domain/portfoilo/constants";
+import { BIO_ITEMS } from "src/domain/portfoilo/constants";
 import { TextLink } from "src/components/ui/TextLink";
 import { UserAvatar } from "../model/user/UserAvatar";
 import { Typography } from "../ui/Typography";
-import { FadeInImage } from "../ui/FadeInImage";
 
 const TopPageComponent: NextPage = () => {
   return (
     <PageContainer>
       <HeaderMenuBar className={"mb-2"} />
-      <SummarySection className={clsx("mb-4", "p-2", "mx-auto", "shadow-lg")}>
-        <Typography variant="body2" className={"text-center"}>
-          Hello, I'm a software engineer based in Tokyo, Japan!
+
+      {/* Hero */}
+      <div className={clsx("py-10", "mb-6")}>
+        <div className={clsx("flex", "items-center", "gap-3", "mb-3")}>
+          <div
+            className={clsx(
+              "w-1",
+              "h-8",
+              "rounded-full",
+              "bg-[#096c8b]",
+              "flex-shrink-0"
+            )}
+          />
+          <Typography
+            variant="h4"
+            sx={{
+              fontFamily: "var(--font-comfortaa), cursive",
+              fontWeight: 700,
+              lineHeight: 1.2,
+            }}
+          >
+            Ryosuke Yoshimoto
+          </Typography>
+        </div>
+        <Typography
+          variant="body1"
+          className={clsx("ml-4", "mb-3")}
+          sx={{ opacity: 0.7 }}
+        >
+          Web Engineer · Front-End Focused
         </Typography>
-      </SummarySection>
+        <Typography
+          variant="body2"
+          className={clsx("ml-4")}
+          sx={{ opacity: 0.5 }}
+        >
+          Hello, I&apos;m a software engineer based in Tokyo, Japan!
+        </Typography>
+      </div>
+
+      {/* BIO */}
       <ContentSection
         className={"p-4"}
         title="BIO"
         content={
-          <>
-            <div className={clsx("flex", "justify-center", "mb-2")}>
-              <UserAvatar />
+          <div className={clsx("flex", "gap-6", "items-start")}>
+            <div className="flex-shrink-0">
+              <UserAvatar className={clsx("w-20", "h-20")} />
             </div>
-            <div className={clsx("flex", "flex-col")}>
-              {BIO_ITEMS.map((bio) => {
-                return (
-                  <div key={bio.title}>
-                    <Typography variant="body2" className={clsx("text-[12px]")}>
-                      {bio.title}
-                    </Typography>
-                    {bio.href ? (
-                      <TextLink
-                        href={bio.href}
-                        className={clsx("mb-2", "inline-block")}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {bio.value}
-                      </TextLink>
-                    ) : (
-                      <Typography variant="body2" className={clsx("mb-2")}>
-                        {bio.value}
-                      </Typography>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </>
-        }
-      />
-      <ContentSection
-        className={"p-4"}
-        title="SKILLS"
-        content={
-          <div
-            className={clsx(
-              "p-2",
-              "content-center",
-              "flex",
-              "flex-col",
-              "items-center"
-            )}
-          >
-            <div className={clsx("grid", "grid-cols-4", "gap-8")}>
-              {SKILL_LANGUAGES.map((skill) => (
-                <div
-                  key={skill.imageUrl}
-                  className={clsx(
-                    "text-center",
-                    "shadow-lg",
-                    "lt-sm:p-1",
-                    "p-4",
-                    "rounded-xl"
+            <div className={clsx("flex", "flex-col", "gap-3")}>
+              {BIO_ITEMS.map((bio) => (
+                <div key={bio.title} className={clsx("flex", "items-baseline", "gap-3")}>
+                  <Typography
+                    variant="body2"
+                    className={clsx("text-[11px]", "w-14", "flex-shrink-0")}
+                    sx={{ opacity: 0.5 }}
+                  >
+                    {bio.title}
+                  </Typography>
+                  {bio.href ? (
+                    <TextLink
+                      href={bio.href}
+                      className={clsx("inline-block")}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {bio.value}
+                    </TextLink>
+                  ) : (
+                    <Typography variant="body2">{bio.value}</Typography>
                   )}
-                >
-                  <FadeInImage
-                    width="80"
-                    height="80"
-                    src={skill.imageUrl}
-                    className="text-white"
-                  />
                 </div>
               ))}
             </div>
           </div>
         }
       />
+
+      {/* SKILLS */}
+      {/* <ContentSection
+        className={"p-4"}
+        title="SKILLS"
+        content={
+          <div className={clsx("grid", "grid-cols-4", "gap-4")}>
+            {SKILL_LANGUAGES.map((skill) => (
+              <div
+                key={skill.imageUrl}
+                className={clsx(
+                  "flex",
+                  "flex-col",
+                  "items-center",
+                  "gap-2",
+                  "shadow-lg",
+                  "p-3",
+                  "rounded-xl"
+                )}
+              >
+                <FadeInImage
+                  width="64"
+                  height="64"
+                  src={skill.imageUrl}
+                  className="text-white"
+                />
+                <Typography
+                  variant="body2"
+                  className={clsx("text-[10px]", "text-center")}
+                  sx={{ opacity: 0.6 }}
+                >
+                  {skill.name}
+                </Typography>
+              </div>
+            ))}
+          </div>
+        }
+      /> */}
     </PageContainer>
   );
 };

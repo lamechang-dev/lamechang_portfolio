@@ -16,6 +16,7 @@ const PageContainer: React.FC<{ children: React.ReactNode }> = ({
         paddingRight: (theme) => theme.spacing(2),
         display: "flex",
         flexDirection: "column",
+        minHeight: "100vh",
       }}
     >
       {children}
