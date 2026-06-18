@@ -41,7 +41,7 @@ const TopPageComponent: NextPage = () => {
           className={clsx("ml-4", "mb-3")}
           sx={{ opacity: 0.7 }}
         >
-          Web Engineer · Front-End Focused
+          Software Engineer
         </Typography>
         <Typography
           variant="body2"

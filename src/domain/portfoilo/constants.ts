@@ -25,6 +25,6 @@ export const BIO_ITEMS = [
     value: "Tokyo, Japan",
     href: "https://www.japan-guide.com/e/e2164.html"
   },
-  { title: "Job", value: "Web Engineer（Front-End Focused）" },
+  { title: "Job", value: "Software Engineer" },
   { title: "Hobby", value: "ゲーム・ドラム・音楽鑑賞・映画鑑賞" }
 ];
