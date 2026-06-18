@@ -1,6 +1,6 @@
 "use client";
 
-import { Dialog, ThemeProvider } from "@mui/material";
+import { CssBaseline, Dialog, ThemeProvider } from "@mui/material";
 import { NextPage } from "next";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
@@ -28,6 +28,7 @@ const MovieDetailPageComponent: NextPage<Props> = ({ movie }) => {
         <>
           {isMobile ? (
             <ThemeProvider theme={completelyDarkTheme}>
+              <CssBaseline />
               <MovieDetailSection
                 movie={movie}
                 onClickCloseButton={handleClickCloseIconButton}
