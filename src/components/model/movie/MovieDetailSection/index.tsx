@@ -21,7 +21,7 @@ const MovieDetailSection: React.FC<Props> = ({
   onClickCloseButton,
 }) => {
   return (
-    <div className={clsx("relative", "h-dvh", "overflow-hidden", "bg-black")}>
+    <div className={clsx("relative", "h-dvh", "overflow-hidden", "bg-darkDefault")}>
       {/* Poster image - fits full width, aspect ratio preserved */}
       <FadeInImage
         placeholder="blur"
@@ -41,7 +41,7 @@ const MovieDetailSection: React.FC<Props> = ({
           "top-0",
           "h-28",
           "bg-gradient-to-b",
-          "from-black/80",
+          "from-darkDefault",
           "to-transparent",
           "z-10"
         )}
@@ -66,7 +66,7 @@ const MovieDetailSection: React.FC<Props> = ({
           "backdrop-blur-md",
           "bg-gradient-to-b",
           "from-black/20",
-          "to-black/80",
+          "to-darkDefault",
           "overflow-y-auto",
           "flex",
           "flex-col",

@@ -29,14 +29,14 @@ const MovieDetailPageComponent: NextPage<Props> = ({ movie }) => {
     router.push("/movies");
   }, []);
 
-  const { completelyDarkTheme } = useThemeValue();
+  const { darkTheme } = useThemeValue();
 
-  useBodyBackgroundColor(completelyDarkTheme.palette.background.default);
+  useBodyBackgroundColor(darkTheme.palette.background.default);
 
   return (
     <>
       {movie && (
-        <ThemeProvider theme={completelyDarkTheme}>
+        <ThemeProvider theme={darkTheme}>
           <CssBaseline />
           {isMobile ? (
             <MovieDetailSection
