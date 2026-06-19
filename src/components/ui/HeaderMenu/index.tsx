@@ -1,6 +1,7 @@
 "use client";
 
 import { Typography, MenuItem, Menu, Box } from "@mui/material";
+import { alpha } from "@mui/material/styles";
 import React from "react";
 import LightButton from "src/components/ui/LightButton";
 import MenuButton from "src/components/ui/MenuButton";
@@ -44,9 +45,15 @@ const HeaderMenuBar: React.FC<Props> = ({ className }) => {
     <Box
       className={className}
       sx={{
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
         padding: (theme) => theme.spacing(1),
         marginRight: (theme) => -theme.spacing(2),
         marginLeft: (theme) => -theme.spacing(2),
+        backdropFilter: "blur(12px)",
+        backgroundColor: (theme) =>
+          alpha(theme.palette.background.default, 0.75),
       }}
     >
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
