@@ -1,3 +1,11 @@
+---
+globs:
+  - "app/**/*.tsx"
+  - "app/**/*.ts"
+  - "src/components/pages/**/*.tsx"
+  - "src/components/pages/**/*.ts"
+---
+
 # App Router のデータフェッチパターン
 
 新規ページは必ずこのパターンに従う:
