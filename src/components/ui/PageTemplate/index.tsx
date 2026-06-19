@@ -5,6 +5,7 @@ import { useGlobalValue } from "src/context/hooks";
 import { CursorGlow } from "src/components/ui/CursorGlow";
 import { useBodyBackgroundColor } from "src/lib/useBodyBackgroundColor";
 import HeaderMenuBar from "src/components/ui/HeaderMenu";
+import { isHeaderVisible } from "src/context/ui/header";
 
 type PageTemplateProps = {
   children: React.ReactNode;
@@ -14,6 +15,7 @@ const PageTemplate: React.VFC<PageTemplateProps> = ({ children }) => {
   const themeType = useGlobalValue(muiThemeType);
   const { darkTheme, lightTheme } = useThemeValue();
   const theme = themeType === "light" ? lightTheme : darkTheme;
+  const headerVisible = useGlobalValue(isHeaderVisible);
 
   useBodyBackgroundColor(theme.palette.background.default);
 
@@ -21,7 +23,7 @@ const PageTemplate: React.VFC<PageTemplateProps> = ({ children }) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <CursorGlow isDark={themeType === "dark"} />
-      <HeaderMenuBar />
+      {headerVisible && <HeaderMenuBar />}
       <div style={{ position: "relative", zIndex: 1 }}>{children}</div>
     </ThemeProvider>
   );
