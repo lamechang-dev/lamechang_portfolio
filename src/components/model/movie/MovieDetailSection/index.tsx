@@ -9,6 +9,7 @@ import { RateStars } from "../../../ui/RateStars/index";
 import { getImageUrlFromMovie } from "src/domain/movies/getter";
 import { POSTER_BLUR_IMAGE_BASE64 } from "src/domain/movies/constants";
 import { FadeInImage } from "src/components/ui/FadeInImage";
+import CollapsibleText from "src/components/ui/CollapsibleText";
 
 type Props = {
   movie?: Movie;
@@ -139,17 +140,19 @@ const MovieDetailSection: React.FC<Props> = ({
           ))}
         </div>
 
-        <Typography
-          className={clsx(
-            "text-sm",
-            "text-gray-300",
-            "leading-relaxed",
-            "animate-fade-in-up",
-            "[animation-delay:0.5s]"
-          )}
-        >
-          {movie?.overview}
-        </Typography>
+        {movie?.overview && (
+          <div
+            className={clsx("animate-fade-in-up", "[animation-delay:0.5s]")}
+          >
+            <CollapsibleText
+              text={movie.overview}
+              maxLines={3}
+              typographyProps={{
+                className: clsx("text-sm", "text-gray-300", "leading-relaxed"),
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
