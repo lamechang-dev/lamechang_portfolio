@@ -1,4 +1,3 @@
-import HeaderMenuBar from "src/components/ui/HeaderMenu";
 import PageContainer from "src/components/ui/PageContainer";
 import ContentSection from "src/components/ui/ContentSection";
 import clsx from "clsx";
@@ -17,7 +16,6 @@ type Props = {
 const TopPageComponent: React.FC<Props> = ({ blogPosts, zennPosts }) => {
   return (
     <PageContainer>
-      <HeaderMenuBar className={"mb-2"} />
 
       {/* Hero */}
       <div className={clsx("py-10", "mb-6")}>

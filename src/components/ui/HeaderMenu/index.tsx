@@ -10,11 +10,7 @@ import { muiThemeType } from "src/context/ui/theme";
 import Link from "next/link";
 import { useSetGlobalState } from "src/context/hooks";
 
-export type Props = {
-  className?: string;
-};
-
-const HeaderMenuBar: React.FC<Props> = ({ className }) => {
+const HeaderMenuBar: React.FC = () => {
   const setTheme = useSetGlobalState(muiThemeType);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -43,20 +39,25 @@ const HeaderMenuBar: React.FC<Props> = ({ className }) => {
 
   return (
     <Box
-      className={className}
       sx={{
         position: "sticky",
         top: 0,
         zIndex: 50,
-        padding: (theme) => theme.spacing(1),
-        marginRight: (theme) => -theme.spacing(2),
-        marginLeft: (theme) => -theme.spacing(2),
         backdropFilter: "blur(12px)",
         backgroundColor: (theme) =>
           alpha(theme.palette.background.default, 0.75),
       }}
     >
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          maxWidth: "720px",
+          margin: "0 auto",
+          padding: (theme) => theme.spacing(1, 2),
+        }}
+      >
         <Box sx={{ alignSelf: "center" }}>
           <Link href="/" passHref>
             <Typography

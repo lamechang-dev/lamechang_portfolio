@@ -10,7 +10,6 @@ import {
   Theme,
   useTheme,
 } from "@mui/material";
-import HeaderMenuBar from "src/components/ui/HeaderMenu";
 import PageContainer from "src/components/ui/PageContainer";
 import HeavyFilterPageComponent from "src/components/pages/react_experiment/useTransition/heavyFilter";
 import HeavyFilterWithTransitionPageComponent from "src/components/pages/react_experiment/useTransition/heavyFilterWithUseTransition";
@@ -57,7 +56,6 @@ const ReactExperimentPage = () => {
 
   return (
     <PageContainer>
-      <HeaderMenuBar className={"mb-2"} />
       <Typography variant="h6" className="mb-4">
         Heavy Filter performance test
       </Typography>

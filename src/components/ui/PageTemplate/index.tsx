@@ -4,6 +4,7 @@ import { muiThemeType } from "src/context/ui/theme/index";
 import { useGlobalValue } from "src/context/hooks";
 import { CursorGlow } from "src/components/ui/CursorGlow";
 import { useBodyBackgroundColor } from "src/lib/useBodyBackgroundColor";
+import HeaderMenuBar from "src/components/ui/HeaderMenu";
 
 type PageTemplateProps = {
   children: React.ReactNode;
@@ -20,6 +21,7 @@ const PageTemplate: React.VFC<PageTemplateProps> = ({ children }) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <CursorGlow isDark={themeType === "dark"} />
+      <HeaderMenuBar />
       <div style={{ position: "relative", zIndex: 1 }}>{children}</div>
     </ThemeProvider>
   );

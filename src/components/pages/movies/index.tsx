@@ -1,7 +1,6 @@
 "use client";
 
 import { NextPage } from "next";
-import HeaderMenuBar from "src/components/ui/HeaderMenu";
 import ContentSection from "src/components/ui/ContentSection";
 import clsx from "clsx";
 import { useViewModel } from "./useViewModel";
@@ -27,7 +26,6 @@ const MoviesPageComponent: NextPage<CommonData> = ({ myFavoriteMovieList }) => {
 
   return (
     <PageContainer>
-      <HeaderMenuBar className={"mb-2"} />
       <ContentSection
         className={"p-4"}
         content={
