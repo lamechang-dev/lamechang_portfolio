@@ -15,6 +15,10 @@ export const convertTmdbV3Movie2Movie = (tmdbV3Movie: TmdbV3Movie): Movie => {
     largeThumbnail: "https://image.tmdb.org/t/p/w780/" + tmdbV3Movie.posterPath,
     genres: tmdbV3Movie.genres,
     overview: tmdbV3Movie.overview,
+    globalRate: tmdbV3Movie.voteAverage
+      ? getRoundNumToNearstHalf(tmdbV3Movie.voteAverage / 2)
+      : undefined,
+    voteCount: tmdbV3Movie.voteCount,
   };
 };
 

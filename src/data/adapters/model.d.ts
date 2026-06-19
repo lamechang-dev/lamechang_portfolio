@@ -13,6 +13,8 @@ export type TmdbV3Movie = {
   homePage?: string;
   title: string;
   overview?: string;
+  voteAverage?: number;
+  voteCount?: number;
 };
 
 export type TmdbV3MyFavoriteMovie = {
@@ -23,6 +25,7 @@ export type TmdbV3MyFavoriteMovie = {
   posterPath?: string | null;
   homePage?: string;
   voteAverage?: number;
+  voteCount?: number;
   overview?: string;
   title: string;
 };

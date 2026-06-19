@@ -8,6 +8,7 @@ export type Movie = {
   link?: string;
   genres: Array<Genre>;
   overview?: string;
+  voteCount?: number;
 };
 
 export type MyFavoriteMovie = {

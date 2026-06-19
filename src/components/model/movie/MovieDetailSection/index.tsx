@@ -79,9 +79,14 @@ const MovieDetailSection: React.VFC<Props> = ({
           >
             {movie?.title}
           </Typography>
-          <div className={clsx("flex", "items-center", "z-20")}>
-            <RateStars rateNum={movie?.globalRate} />
-          </div>
+        </div>
+        <div className={clsx("z-20", "flex", "items-center", "gap-x-2")}>
+          <RateStars rateNum={movie?.globalRate} />
+          {movie?.voteCount != null && (
+            <Typography className={clsx("text-xs", "text-gray-400")}>
+              {movie.voteCount.toLocaleString()} votes
+            </Typography>
+          )}
         </div>
         <div
           className={clsx(
