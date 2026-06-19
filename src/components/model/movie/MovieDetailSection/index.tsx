@@ -81,9 +81,18 @@ const MovieDetailSection: React.VFC<Props> = ({
           </Typography>
         </div>
         <div className={clsx("z-20", "flex", "items-center", "gap-x-2")}>
-          <RateStars rateNum={movie?.globalRate} />
+          <div className={clsx("animate-fade-in-up", "[animation-delay:0.1s]")}>
+            <RateStars rateNum={movie?.globalRate} />
+          </div>
           {movie?.voteCount != null && (
-            <Typography className={clsx("text-xs", "text-gray-400")}>
+            <Typography
+              className={clsx(
+                "text-xs",
+                "text-gray-400",
+                "animate-fade-in-up",
+                "[animation-delay:0.25s]"
+              )}
+            >
               {movie.voteCount.toLocaleString()} votes
             </Typography>
           )}
@@ -94,7 +103,9 @@ const MovieDetailSection: React.VFC<Props> = ({
             "flex",
             "justify-start",
             "flex-wrap",
-            "gap-1"
+            "gap-1",
+            "animate-fade-in-up",
+            "[animation-delay:0.35s]"
           )}
         >
           {movie?.genres?.map((genre) => (
@@ -106,7 +117,13 @@ const MovieDetailSection: React.VFC<Props> = ({
             />
           ))}
         </div>
-        <div className={clsx("z-20")}>
+        <div
+          className={clsx(
+            "z-20",
+            "animate-fade-in-up",
+            "[animation-delay:0.5s]"
+          )}
+        >
           <Typography className={clsx("z-20", "text-xs")}>
             {movie?.overview}
           </Typography>
