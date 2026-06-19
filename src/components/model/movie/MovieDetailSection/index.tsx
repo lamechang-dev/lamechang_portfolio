@@ -21,7 +21,7 @@ const MovieDetailSection: React.VFC<Props> = ({
 }) => {
   return (
     <>
-      <div className={clsx("relative", "lt-sm:h-screen")}>
+      <div className={clsx("relative", "lt-sm:h-screen", "overflow-hidden")}>
         <div
           className={clsx(
             "absolute",
@@ -50,7 +50,7 @@ const MovieDetailSection: React.VFC<Props> = ({
           placeholder="blur"
           blurDataURL={POSTER_BLUR_IMAGE_BASE64}
           src={getImageUrlFromMovie(isMobile, movie)}
-          className={clsx("sm:h-screen", "object-cover")}
+          className={clsx("w-full", "lt-sm:h-full", "object-cover")}
           width={isMobile ? 1000 : 780}
           height={isMobile ? 1500 : 1170}
           priority
