@@ -36,29 +36,25 @@ const MovieDetailPageComponent: NextPage<Props> = ({ movie }) => {
   return (
     <>
       {movie && (
-        <>
+        <ThemeProvider theme={completelyDarkTheme}>
+          <CssBaseline />
           {isMobile ? (
-            <ThemeProvider theme={completelyDarkTheme}>
-              <CssBaseline />
+            <MovieDetailSection
+              movie={movie}
+              onClickCloseButton={handleClickCloseIconButton}
+            />
+          ) : (
+            <Dialog
+              open={true}
+              className="mx-auto aspect-[780/1170] h-[100vh]"
+            >
               <MovieDetailSection
                 movie={movie}
                 onClickCloseButton={handleClickCloseIconButton}
               />
-            </ThemeProvider>
-          ) : (
-            <ThemeProvider theme={completelyDarkTheme}>
-              <Dialog
-                open={true}
-                className="mx-auto aspect-[780/1170] h-[100vh]"
-              >
-                <MovieDetailSection
-                  movie={movie}
-                  onClickCloseButton={handleClickCloseIconButton}
-                />
-              </Dialog>
-            </ThemeProvider>
+            </Dialog>
           )}
-        </>
+        </ThemeProvider>
       )}
     </>
   );

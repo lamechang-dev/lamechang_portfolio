@@ -15,72 +15,92 @@ type Props = {
   onClickCloseButton?: () => void;
 };
 
-const MovieDetailSection: React.VFC<Props> = ({
+const MovieDetailSection: React.FC<Props> = ({
   movie,
   onClickCloseButton,
 }) => {
   return (
-    <>
-      <div className={clsx("relative", "lt-sm:h-screen", "overflow-hidden")}>
-        <div
-          className={clsx(
-            "absolute",
-            "h-full",
-            "w-full",
-            "max-w-screen",
-            "bg-gradient-to-b",
-            isMobile
-              ? "from-transparent via-black/90 to-black"
-              : "from-transparent via-black/70 to-black",
-            "z-10"
-          )}
-        >
-          <IconButton
-            onClick={onClickCloseButton}
-            className={clsx(
-              isMobile ? "fixed" : "absolute",
-              "right-2",
-              "top-2"
-            )}
-          >
-            <CloseRounded />
-          </IconButton>
-        </div>
-        <FadeInImage
-          placeholder="blur"
-          blurDataURL={POSTER_BLUR_IMAGE_BASE64}
-          src={getImageUrlFromMovie(isMobile, movie)}
-          className={clsx("w-full", "lt-sm:h-full", "object-cover")}
-          width={isMobile ? 1000 : 780}
-          height={isMobile ? 1500 : 1170}
-          priority
-        />
-      </div>
+    <div className={clsx("relative", "h-dvh", "overflow-hidden", "bg-black")}>
+      {/* Poster image - fits full width, aspect ratio preserved */}
+      <FadeInImage
+        placeholder="blur"
+        blurDataURL={POSTER_BLUR_IMAGE_BASE64}
+        src={getImageUrlFromMovie(isMobile, movie)}
+        className="w-full"
+        width={isMobile ? 1000 : 780}
+        height={isMobile ? 1500 : 1170}
+        priority
+      />
+
+      {/* Top gradient + close button */}
       <div
         className={clsx(
           "absolute",
-          "w-full",
-          "bottom-0",
-          "flex",
-          "flex-col",
-          "p-4",
-          "gap-y-2"
+          "inset-x-0",
+          "top-0",
+          "h-28",
+          "bg-gradient-to-b",
+          "from-black/80",
+          "to-transparent",
+          "z-10"
         )}
       >
-        <div className={clsx("z-20", "flex", "items-center", "gap-x-2")}>
-          <Typography
-            className={clsx(
-              "text-lg",
-              "text-ellipsis",
-              "overflow-hidden",
-              "whitespace-nowrap",
-              "text-lightPaper"
-            )}
-          >
-            {movie?.title}
-          </Typography>
-        </div>
-        <div className={clsx("z-20", "flex", "items-center", "gap-x-2")}>
+        <IconButton
+          onClick={onClickCloseButton}
+          className={clsx("absolute", "right-2", "top-2")}
+        >
+          <CloseRounded />
+        </IconButton>
+      </div>
+
+      {/* Glass content panel */}
+      <div
+        className={clsx(
+          "absolute",
+          "bottom-0",
+          "left-0",
+          "right-0",
+          "z-20",
+          "rounded-t-3xl",
+          "backdrop-blur-md",
+          "bg-gradient-to-b",
+          "from-black/20",
+          "to-black/80",
+          "overflow-y-auto",
+          "flex",
+          "flex-col",
+          "px-5",
+          "pt-4",
+          "pb-8",
+          "gap-y-3"
+        )}
+      >
+        {/* Drag handle */}
+        <div
+          className={clsx(
+            "w-10",
+            "h-1",
+            "bg-white/30",
+            "rounded-full",
+            "mx-auto",
+            "mb-1",
+            "shrink-0"
+          )}
+        />
+
+        <Typography
+          className={clsx(
+            "text-xl",
+            "font-bold",
+            "text-white",
+            "animate-fade-in-up",
+            "shrink-0"
+          )}
+        >
+          {movie?.title}
+        </Typography>
+
+        <div className={clsx("flex", "items-center", "gap-x-2", "shrink-0")}>
           <div className={clsx("animate-fade-in-up", "[animation-delay:0.1s]")}>
             <RateStars rateNum={movie?.globalRate} />
           </div>
@@ -97,15 +117,16 @@ const MovieDetailSection: React.VFC<Props> = ({
             </Typography>
           )}
         </div>
+
         <div
           className={clsx(
-            "z-20",
             "flex",
             "justify-start",
             "flex-wrap",
             "gap-1",
             "animate-fade-in-up",
-            "[animation-delay:0.35s]"
+            "[animation-delay:0.35s]",
+            "shrink-0"
           )}
         >
           {movie?.genres?.map((genre) => (
@@ -117,19 +138,20 @@ const MovieDetailSection: React.VFC<Props> = ({
             />
           ))}
         </div>
-        <div
+
+        <Typography
           className={clsx(
-            "z-20",
+            "text-sm",
+            "text-gray-300",
+            "leading-relaxed",
             "animate-fade-in-up",
             "[animation-delay:0.5s]"
           )}
         >
-          <Typography className={clsx("z-20", "text-xs")}>
-            {movie?.overview}
-          </Typography>
-        </div>
+          {movie?.overview}
+        </Typography>
       </div>
-    </>
+    </div>
   );
 };
 
