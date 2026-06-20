@@ -6,6 +6,7 @@ import clsx from "clsx";
 
 export const FadeInImage = ({
   className,
+  onLoad,
   ...props
 }: ComponentProps<typeof Image>) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -14,9 +15,10 @@ export const FadeInImage = ({
     <Image
       alt={props.alt ?? ""}
       onLoad={(e) => {
-        // only fade in the actual image, not the blur placeholder
-        if (e.currentTarget.src.startsWith("data:")) return;
-        setIsLoaded(true);
+        if (!e.currentTarget.src.startsWith("data:")) {
+          setIsLoaded(true);
+        }
+        onLoad?.(e);
       }}
       className={clsx(
         "transition-opacity duration-1500 ease-in-out",
