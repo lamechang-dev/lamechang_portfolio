@@ -1,3 +1,5 @@
+"use client";
+
 import { CloseRounded } from "@mui/icons-material";
 import clsx from "clsx";
 import Chip from "src/components/ui/Chip";
@@ -10,18 +12,60 @@ import { getImageUrlFromMovie } from "src/domain/movies/getter";
 import { POSTER_BLUR_IMAGE_BASE64 } from "src/domain/movies/constants";
 import { FadeInImage } from "src/components/ui/FadeInImage";
 import CollapsibleText from "src/components/ui/CollapsibleText";
+import { useRef, useState } from "react";
 
 type Props = {
   movie?: Movie;
   onClickCloseButton?: () => void;
 };
 
+// Poster aspect ratio: height / width (both mobile 1000x1500 and desktop 780x1170 are 1.5)
+const POSTER_ASPECT_RATIO = 1.5;
+// Minimum height (px) of panel that stays visible when collapsed
+const PANEL_PEEK_HEIGHT = 48;
+
 const MovieDetailSection: React.FC<Props> = ({
   movie,
   onClickCloseButton,
 }) => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [slideDistance, setSlideDistance] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  const handleToggle = () => {
+    if (!isCollapsed) {
+      const container = containerRef.current;
+      const panel = panelRef.current;
+      if (container && panel) {
+        const containerH = container.clientHeight;
+        const panelH = panel.clientHeight;
+        const containerW = container.clientWidth;
+        const posterH = containerW * POSTER_ASPECT_RATIO;
+        const currentPanelTop = containerH - panelH;
+        // Slide the panel so its top edge aligns with the poster bottom,
+        // but keep at least PANEL_PEEK_HEIGHT visible for re-expansion.
+        const targetPanelTop = Math.min(
+          posterH,
+          containerH - PANEL_PEEK_HEIGHT
+        );
+        const distance = Math.max(0, targetPanelTop - currentPanelTop);
+        setSlideDistance(distance);
+      }
+    }
+    setIsCollapsed((prev) => !prev);
+  };
+
   return (
-    <div className={clsx("relative", "h-dvh", "overflow-hidden", "bg-darkDefault")}>
+    <div
+      ref={containerRef}
+      className={clsx(
+        "relative",
+        "h-dvh",
+        "overflow-hidden",
+        "bg-darkDefault"
+      )}
+    >
       {/* Poster image - fits full width, aspect ratio preserved */}
       <FadeInImage
         placeholder="blur"
@@ -56,6 +100,13 @@ const MovieDetailSection: React.FC<Props> = ({
 
       {/* Glass content panel */}
       <div
+        ref={panelRef}
+        style={{
+          transform: isCollapsed
+            ? `translateY(${slideDistance}px)`
+            : "translateY(0)",
+          transition: "transform 0.35s ease-in-out",
+        }}
         className={clsx(
           "absolute",
           "bottom-0",
@@ -78,18 +129,29 @@ const MovieDetailSection: React.FC<Props> = ({
           "short:min-h-0"
         )}
       >
-        {/* Drag handle */}
-        <div
+        {/* Drag handle - tapping toggles poster/detail view */}
+        <button
+          onClick={handleToggle}
+          aria-label={isCollapsed ? "詳細を表示" : "ポスターを表示"}
           className={clsx(
-            "w-10",
-            "h-1",
-            "bg-white/30",
-            "rounded-full",
-            "mx-auto",
+            "flex",
+            "justify-center",
+            "items-center",
+            "w-full",
+            "py-1",
+            "-mt-1",
             "mb-1",
+            "bg-transparent",
+            "border-none",
+            "outline-none",
+            "cursor-pointer",
             "shrink-0"
           )}
-        />
+        >
+          <div
+            className={clsx("w-10", "h-1", "bg-white/30", "rounded-full")}
+          />
+        </button>
 
         <Typography
           className={clsx(
