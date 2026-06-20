@@ -21,6 +21,7 @@ module.exports = {
   theme: {
     screens: {
       "lt-sm": { max: SCREENS.SM },
+      short: { raw: "(max-height: 700px)" },
     },
     extend: {
       keyframes: {

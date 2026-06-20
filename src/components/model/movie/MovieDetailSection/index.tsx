@@ -73,7 +73,9 @@ const MovieDetailSection: React.FC<Props> = ({
           "px-5",
           "pt-4",
           "pb-8",
-          "gap-y-3"
+          "gap-y-3",
+          "min-h-96",
+          "short:min-h-0"
         )}
       >
         {/* Drag handle */}
