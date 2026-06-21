@@ -6,13 +6,79 @@ import clsx from "clsx";
 import { useViewModel } from "./useViewModel";
 import Chip from "src/components/ui/Chip";
 import { isMobile } from "react-device-detect";
+import { preload } from "react-dom";
+import { useEffect, useRef } from "react";
+import { getImageProps } from "next/image";
 import PageContainer from "src/components/ui/PageContainer";
 import { Typography } from "src/components/ui/Typography";
 import { getImageUrlFromMovie } from "src/domain/movies/getter";
 import { POSTER_BLUR_IMAGE_BASE64 } from "src/domain/movies/constants";
 import { FadeInImage } from "src/components/ui/FadeInImage";
+import { Movie } from "src/domain/movies/model";
 import { CommonData } from "src/lib/getCommonData";
 import Link from "next/link";
+
+const preloadPosterImage = (movie: Movie) => {
+  const rawUrl = getImageUrlFromMovie(isMobile, movie);
+  if (!rawUrl) return;
+  const { props } = getImageProps({
+    src: rawUrl,
+    alt: "",
+    width: isMobile ? 1000 : 780,
+    height: isMobile ? 1500 : 1170,
+    quality: 75,
+  });
+  preload(props.src, { as: "image", imageSrcSet: props.srcSet });
+};
+
+const MovieCard = ({ movie }: { movie: Movie }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          preloadPosterImage(movie);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [movie]);
+
+  return (
+    <div ref={ref} className={clsx("p-2", "flex", "flex-col", "gap-y-2")}>
+      <div
+        className={clsx(
+          "hover:brightness-[.80]",
+          "transition",
+          "cursor-pointer"
+        )}
+        onMouseEnter={() => preloadPosterImage(movie)}
+      >
+        <Link href={`/movies/${movie.id}`}>
+          <FadeInImage
+            placeholder="blur"
+            blurDataURL={POSTER_BLUR_IMAGE_BASE64}
+            src={getImageUrlFromMovie(isMobile, movie)}
+            alt={movie.title}
+            className={clsx("text-center", "rounded-md")}
+            width={300}
+            height={450}
+            sizes="(max-width:768px) 50vw, (max-width:1200px) 25vw, 20vw"
+          />
+        </Link>
+      </div>
+      <Typography className={clsx("text-center", "text-xs")}>
+        {movie.title}
+      </Typography>
+    </div>
+  );
+};
 
 const MoviesPageComponent: NextPage<CommonData> = ({ myFavoriteMovieList }) => {
   const {
@@ -22,7 +88,6 @@ const MoviesPageComponent: NextPage<CommonData> = ({ myFavoriteMovieList }) => {
     selectedGenres,
     genres,
   } = useViewModel({ myFavoriteMovieList });
-
 
   return (
     <PageContainer>
@@ -76,38 +141,9 @@ const MoviesPageComponent: NextPage<CommonData> = ({ myFavoriteMovieList }) => {
                 "grid grid-cols-3"
               )}
             >
-              {filteredMovieList?.map((movie) => {
-                return (
-                  <div
-                    key={movie.title}
-                    className={clsx("p-2", "flex", "flex-col", "gap-y-2")}
-                  >
-                    <div
-                      className={clsx(
-                        "hover:brightness-[.80]",
-                        "transition",
-                        "cursor-pointer"
-                      )}
-                    >
-                      <Link href={`/movies/${movie.id}`}>
-                        <FadeInImage
-                          placeholder="blur"
-                          blurDataURL={POSTER_BLUR_IMAGE_BASE64}
-                          src={getImageUrlFromMovie(isMobile, movie)}
-                          alt={movie.title}
-                          className={clsx("text-center", "rounded-md")}
-                          width={300}
-                          height={450}
-                          sizes="(max-width:768px) 50vw, (max-width:1200px) 25vw, 20vw"
-                        />
-                      </Link>
-                    </div>
-                    <Typography className={clsx("text-center", "text-xs")}>
-                      {movie.title}
-                    </Typography>
-                  </div>
-                );
-              })}
+              {filteredMovieList?.map((movie) => (
+                <MovieCard key={movie.title} movie={movie} />
+              ))}
             </div>
           </>
         }
