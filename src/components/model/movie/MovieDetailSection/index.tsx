@@ -70,7 +70,7 @@ const MovieDetailSection: React.FC<Props> = ({
       <FadeInImage
         placeholder="blur"
         blurDataURL={POSTER_BLUR_IMAGE_BASE64}
-        src={getImageUrlFromMovie(isMobile, movie)}
+        src={getImageUrlFromMovie(movie)}
         className="w-full cursor-pointer"
         onClick={handleGlassPanelToggle}
         width={isMobile ? 1000 : 780}

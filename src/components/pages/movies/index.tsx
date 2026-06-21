@@ -5,7 +5,6 @@ import ContentSection from "src/components/ui/ContentSection";
 import clsx from "clsx";
 import { useViewModel } from "./useViewModel";
 import Chip from "src/components/ui/Chip";
-import { isMobile } from "react-device-detect";
 import PageContainer from "src/components/ui/PageContainer";
 import { Typography } from "src/components/ui/Typography";
 import { getImageUrlFromMovie } from "src/domain/movies/getter";
@@ -93,7 +92,7 @@ const MoviesPageComponent: NextPage<CommonData> = ({ myFavoriteMovieList }) => {
                         <FadeInImage
                           placeholder="blur"
                           blurDataURL={POSTER_BLUR_IMAGE_BASE64}
-                          src={getImageUrlFromMovie(isMobile, movie)}
+                          src={getImageUrlFromMovie(movie)}
                           alt={movie.title}
                           className={clsx("text-center", "rounded-md")}
                           width={300}
