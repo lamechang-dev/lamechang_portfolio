@@ -46,6 +46,7 @@ UI: MUI 7 + Tailwind CSS 3 / 状態管理: Jotai 2 / データ取得: axios
   - 理由: `axios-case-converter` による snake_case→camelCase 変換がここで行われる
 - Jotai の atom は `src/context/` 配下で管理し、コンポーネントに直書きしない
 - 画像ドメインは `image.tmdb.org` のみ許可(`next.config.js`)。追加時は `next.config.js` を更新する
+- イベントハンドラ・トグル関数の命名には必ず操作対象を含める（例: `handleToggle` → `handleGlassPanelToggle`、`toggle` → `toggleSidebar`）。何をトグル/操作するかが名前だけで分かるようにする
 
 # やってはいけないこと
 

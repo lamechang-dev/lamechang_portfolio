@@ -33,7 +33,7 @@ const MovieDetailSection: React.FC<Props> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  const handleToggle = () => {
+  const handleGlassPanelToggle = () => {
     if (!isCollapsed) {
       const container = containerRef.current;
       const panel = panelRef.current;
@@ -72,7 +72,7 @@ const MovieDetailSection: React.FC<Props> = ({
         blurDataURL={POSTER_BLUR_IMAGE_BASE64}
         src={getImageUrlFromMovie(isMobile, movie)}
         className="w-full cursor-pointer"
-        onClick={handleToggle}
+        onClick={handleGlassPanelToggle}
         width={isMobile ? 1000 : 780}
         height={isMobile ? 1500 : 1170}
         priority
@@ -132,7 +132,7 @@ const MovieDetailSection: React.FC<Props> = ({
       >
         {/* Drag handle - tapping toggles poster/detail view */}
         <button
-          onClick={handleToggle}
+          onClick={handleGlassPanelToggle}
           aria-label={isCollapsed ? "詳細を表示" : "ポスターを表示"}
           className={clsx(
             "flex",
