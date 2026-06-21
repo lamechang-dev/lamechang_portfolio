@@ -71,7 +71,8 @@ const MovieDetailSection: React.FC<Props> = ({
         placeholder="blur"
         blurDataURL={POSTER_BLUR_IMAGE_BASE64}
         src={getImageUrlFromMovie(isMobile, movie)}
-        className="w-full"
+        className="w-full cursor-pointer"
+        onClick={handleToggle}
         width={isMobile ? 1000 : 780}
         height={isMobile ? 1500 : 1170}
         priority
