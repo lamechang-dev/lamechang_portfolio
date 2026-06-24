@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { Movie, MovieList } from "src/domain/movies/model";
-import { tmdbApiClient } from "../adapters/index";
+import { tmdbApiClient } from "../adapters/tmdb/index";
 import {
   convertTmdbV3Movie2Movie,
   convertTmdbV3Genre2Genre,
@@ -14,7 +14,7 @@ import {
   TmdbV3MovieResponse,
   TmdbV3GetMyFavoriteMoviesResponse,
   TmdbV3GetGenresResponse,
-} from "../adapters/model";
+} from "../adapters/tmdb/model";
 import { getIncrementalArrayByMaxNum } from "src/lib/array";
 
 const getLatestMovies: (

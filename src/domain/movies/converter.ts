@@ -2,7 +2,7 @@ import {
   TmdbV3Movie,
   TmdbV3MyFavoriteMovie,
   TmdbV3Genre,
-} from "src/data/adapters/model";
+} from "src/data/adapters/tmdb/model";
 import { Genre } from "../genres/model";
 import { Movie, MyFavoriteMovie } from "./model";
 import { getRoundNumToNearstHalf } from "src/lib/number";
